@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Little Scripts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @little_scripts.each do |little_script| %>
+      <tr>
+        <td><%= little_script.name %></td>
+        <td><%= little_script.user_id %></td>
+        <td><%= link_to 'Show', little_script %></td>
+        <td><%= link_to 'Edit', edit_little_script_path(little_script) %></td>
+        <td><%= link_to 'Destroy', little_script, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Little Script', new_user_little_script_path %>

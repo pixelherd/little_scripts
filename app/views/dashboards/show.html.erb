@@ -1,0 +1,14 @@
+<b>Your scripts:</b>
+<ul id="script_list">
+  <% @dashboard.each do |script| %>
+    <li>
+      <span> <%= link_to script[:script_name], little_script_path(script[:script_id]) %> </span>
+      <span> <%= script[:duration_hours]%> hrs <%= script[:duration_minutes] %> mins </span>
+      <span> <a href="">START PLAY-THROUGH</a> </span>
+
+
+    </li>
+  <% end %>
+</ul>
+
+<%= render 'little_scripts/form' %>

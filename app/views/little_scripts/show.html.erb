@@ -1,0 +1,16 @@
+<h1><strong><%= @little_script.name %></strong></h1>
+<h2>Could be finished by <%= (Time.now + @little_script.steps.map(&:duration).sum).strftime('%H:%M') %></h2>
+<h2><a href="">GO</a></h2>
+
+<ul style="width: 300px; padding-left: 0">
+  <% @little_script.steps.each do |step| %>
+    <li style="display: flex; justify-content: space-evenly; border-bottom: solid pink 1px">
+      <span style="width: 70%"><%= step.name %> </span>
+      <span style="width: 30%"> <%= (step.duration/60/60) %> hr <%= step.duration/60%60%>min</span>
+    </li>
+  <%end%>
+</ul>
+<details title="Add steps" open>
+  <summary class="cheeky_heading">ADD STEPS</summary>
+<%= render 'steps/form', little_script_id: @little_script.id %>
+</details>
