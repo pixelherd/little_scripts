@@ -1,0 +1,2 @@
+module LittleScriptsHelper
+end

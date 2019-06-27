@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :pages, only: [:show, :guest]
-  # root to: 'pages#guest'
-
+  devise_for :testers
   resource :dashboards, only: [:show]
   root to: 'dashboards#show'
+
+  resources :testers, only: :index
+
+  resources :pages, only: [:show, :guest]
 
   resources :users, only: [:show] do
 

@@ -89,7 +89,18 @@
   </head>
 
   <body>
-  <p id="notice" style="color: lightslategrey"><%= notice %></p>
+  <div id="notice" class="alert alert-info"><%= notice %></div>
+  <div class="alert alert-warning"><%= alert %></div>
+  <div class="header-links">
+    <%if tester_signed_in?  %>
+      <%= button_to "Sign Out", destroy_tester_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_tester_session_path %>
+      <%= link_to "Make A New Account", new_tester_registration_path %>
+    <% end %>
+
+
+  </div>
     <%= yield %>
   </body>
 </html>
