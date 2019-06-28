@@ -9,8 +9,8 @@
   </div>
   <div class="tab">What's the first step?
     <p><input placeholder="name" oninput="this.className = ''" name="step[name]"></p>
-    <p>Hours <input type="number" min="1" max="60" oninput="this.className = ''" name="step[duration_hours]"></p>
-    <p>Minutes <input type="number" min="1" max="60" oninput="this.className = ''" name="step[duration_minutes]"></p>
+    <p>Hours <input type="number" min="0" max="3" value="0" oninput="this.className = ''" name="step[duration_hours]"></p>
+    <p>Minutes <input type="number" min="1" max="60" value="3" oninput="this.className = ''" name="step[duration_minutes]"></p>
   </div>
   <div style="overflow:auto;">
     <div style="float:right;">
@@ -45,7 +45,7 @@
             document.getElementById("nextBtn").innerHTML = "Next";
         }
         //... and run a function that will display the correct step indicator:
-        fixStepIndicator(n)
+        fixStepIndicator(num)
     }
 
     function nextPrev(n) {

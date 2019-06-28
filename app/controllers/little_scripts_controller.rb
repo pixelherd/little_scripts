@@ -38,10 +38,10 @@ class LittleScriptsController < ApplicationController
 
     respond_to do |format|
        if @step.save
-         format.html { redirect_to @little_script.user, notice: 'Little script was successfully created.' }
-         format.json { render @little_script.user, status: :created, location: @little_script.user }
+         format.html { redirect_to root_path, notice: 'Little script was successfully created.' }
+         format.json { render @little_script, status: :created, location: root_path }
        else
-         format.html { render root_url}
+         format.html { render root_path}
          format.json { render json: @step.errors, status: :unprocessable_entity }
        end
      end

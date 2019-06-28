@@ -89,16 +89,16 @@
   </head>
 
   <body>
-  <div id="notice" class="alert alert-info"><%= notice %></div>
-  <div class="alert alert-warning"><%= alert %></div>
-  <div class="header-links">
-    <%if tester_signed_in?  %>
-      <%= button_to "Sign Out", destroy_tester_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In", new_tester_session_path %>
-      <%= link_to "Make A New Account", new_tester_registration_path %>
-    <% end %>
+  <p class="notice" id="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
+  <div class="header-links">
+    <%if user_signed_in?  %>
+      <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Make A New Account", new_user_registration_path %>
+    <% end %>
 
   </div>
     <%= yield %>
