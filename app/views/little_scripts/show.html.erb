@@ -1,6 +1,6 @@
 <h1><strong><%= @little_script.name %></strong></h1>
 <h2>Could be finished by <%= (Time.now + @little_script.steps.map(&:duration).sum).strftime('%H:%M') %></h2>
-<h2><a href="">GO</a></h2>
+<h2> <button class="go-button" id="<%= @little_script.id %>"> START PLAY-THROUGH </button></h2>
 
 <ul style="width: 300px; padding-left: 0">
   <% @little_script.steps.each do |step| %>

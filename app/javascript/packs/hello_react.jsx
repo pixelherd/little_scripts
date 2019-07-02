@@ -6,9 +6,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const Hello = props => (
+export const Hello = props => (
   <div>Hello {props.name}!</div>
-)
+);
 
 Hello.defaultProps = {
   name: 'David'
@@ -23,4 +23,4 @@ document.addEventListener('DOMContentLoaded', () => {
     <Hello name="React" />,
     document.body.appendChild(document.createElement('div')),
   )
-})
+});
