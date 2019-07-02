@@ -1,4 +1,5 @@
 import React from "react";
+import {Route, HashRouter} from "react-router-dom";
 
 class Page extends React.Component {
     constructor(props) {
@@ -12,23 +13,28 @@ class Page extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({slides: this.props.little_script.steps})
+        this.setState({slides: this.props})
     }
 
 
     render() {
         return (
-            <article className="playThroughScreen">
-                <h1>Hello {this.props.little_script.name}!</h1>
+            <HashRouter>
+                <Route path="/" component={Card} />
 
 
-                <p>Total duration:</p>
-                <span>{this.props.little_script.duration_hours} hours </span>
-                <span>{this.props.little_script.duration_minutes} minutes </span>
 
-            </article>
+                <article className="playThroughScreen">
+                    <h1>Hello {this.props.id}!</h1>
+
+                </article>
+            </HashRouter>
         )
     }
 }
 
 export default Page
+
+const Card = ( { props }) => (
+    <div>Hello</div>
+);

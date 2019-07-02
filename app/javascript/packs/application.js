@@ -15,18 +15,10 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import {newScriptForm} from "../components/new_script_form";
-
 const log1 = document.createElement("p");
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.body.appendChild(log1);
-
-    const newScriptFormElement = document.getElementById('newScriptForm');
-    if (newScriptFormElement) {
-        newScriptForm()
-    }
     const stepFormElement = document.getElementById('createStepForm');
     if (stepFormElement) {
         stepFormElement.addEventListener("submit", handleStepSubmit);

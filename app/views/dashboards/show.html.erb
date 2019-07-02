@@ -18,3 +18,38 @@
 
 </article>
 <%= render 'little_scripts/form' %>
+
+<p>You are at coordinate <span id="coord">0</span> on the line.</p>
+<p id="loc"> Location is: </p>
+<p>
+  <a href="#x=1" id="playthrough-1" onclick="go(1); return false;">Play</a>
+</p>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loc').textContent = window.location.href;
+    });
+
+    let currentPage = document.location.pathname === "/" ? 0 : document.location.pathname.slice(-1);
+    function go(d) {
+        setupPage(currentPage + d);
+        history.pushState(currentPage, document.title, '#x=' + currentPage);
+    }
+
+    onpopstate = function(event) {
+        console.log(event.currentTarget.location.href);
+        console.log(event.state);
+        setupPage(event.state);
+
+    };
+
+    function setupPage(page) {
+        currentPage = page;
+        document.title = '#x=' + currentPage;
+        document.getElementById('coord').textContent = currentPage;
+        document.links[2].href = '#x=' + (currentPage+1);
+        // document.links[5].textContent = 'Advance to ' + (currentPage+1);
+        // document.links[1].href = '#x=' + (currentPage-1);
+        // document.links[1].textContent = 'retreat to ' + (currentPage-1);
+    }
+</script>

@@ -33,7 +33,6 @@ $form-button-outline: navy 3px solid;
 
   button {
     overflow:auto;
-    float:right;
     background-color: dodgerblue;
     color: #ffffff;
     border: navy 1px solid;
@@ -49,8 +48,8 @@ $form-button-outline: navy 3px solid;
   }
 
   #prevBtn {
-    background-color: #bbbbbb;
-  }
+       background-color: #bbbbbb;
+     }
 
   /* Stepper circles at the bottom of the form,
    TODO: replace with text 1/2 or something, as the circles look clickable when they aren't
