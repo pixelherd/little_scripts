@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, HashRouter} from "react-router-dom";
+import "./page.scss"
 
 class Page extends React.Component {
     constructor(props) {
@@ -9,7 +10,12 @@ class Page extends React.Component {
             prev: -1,
             active: 0,
             next: 1
-        }
+        };
+        this.handleClick = this.handleClick.bind(this)
+    }
+    handleClick(e) {
+        e.preventDefault();
+        window.history.go(-1)
     }
 
     componentDidMount() {
@@ -19,16 +25,10 @@ class Page extends React.Component {
 
     render() {
         return (
-            <HashRouter>
-                <Route path="/" component={Card} />
-
-
-
                 <article className="playThroughScreen">
+                    <button className="close" onClick={this.handleClick}> X </button>
                     <h1>Hello {this.props.id}!</h1>
-
                 </article>
-            </HashRouter>
         )
     }
 }
