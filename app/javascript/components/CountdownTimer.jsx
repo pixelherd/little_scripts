@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React {useState, use}from 'react';
 
-function CountdownTimer(props) {
-
-    const [timeRemaining, setTimeRemaining] = useState(props.step.duration);
-    const [isLate, setIsLate] = useState(false);
-
-    useEffect(()=> {
-        if (!isLate) {
-            setTimeout(() => {
-                setTimeRemaining(
-                    timeRemaining > 0 ? (timeRemaining - 1) : 0
-                )
-            }, 1000)
-        }
-    });
-
-    return (<div className="CountdownTimer" {...props}
+const CountdownTimer = props =>  {
+    let timeRemaining = props.timeRemaining;
+    return (<div className="CountdownTimer"
                  style={
                      {background: "transparent",
                          // border: "1px solid black",

@@ -1,20 +1,29 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import StepName from './StepName';
 import CountdownTimer from "./CountdownTimer";
 import "./card.scss";
 
-class StepCard extends React.Component {
-    constructor(props){
-        super(props);
-    }
+const StepCard = (props) => {
 
-    render() {
-        let step = this.props.step;
-        return (
+    const [timeRemaining, setTimeRemaining] = useState(props.step.duration);
+    const [isLate, setIsLate] = useState(false);
+
+    useEffect(()=> {
+        if (!isLate) {
+            setTimeout(() => {
+                setTimeRemaining(
+                    timeRemaining > 0 ? (timeRemaining - 1) : 0
+                )
+            }, 1000)
+        }
+    });
+
+
+    return (
             <section className="step-card">
-                <StepName step={step}/>
-                <CountdownTimer step={step}/>
-            </section>);
-    }
-}
+                <StepName step={props.step}/>
+                <CountdownTimer timeRemaining={timeRemaining}/>
+            </section>
+    )
+};
 export default StepCard;

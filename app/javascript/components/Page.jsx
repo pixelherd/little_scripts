@@ -7,15 +7,11 @@ class Page extends React.Component {
         super(props);
         this.state = {
             slides: [],
-            prev: -1,
-            active: 0,
-            next: 1
         };
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
-
     componentDidMount() {
-        this.setState({slides: this.props.little_script.steps})
+        this.setState({slides: this.props.little_script.steps});
     }
 
     handleClick(e) {
@@ -26,6 +22,7 @@ class Page extends React.Component {
 
     render() {
         let initial_step = this.props.little_script.steps[0];
+        let steps = this.props.little_script.steps;
         return (
                 <div className="playThroughScreen">
                     <nav>
@@ -33,9 +30,7 @@ class Page extends React.Component {
                     </nav>
                     <article className="script">
                         <h1>{this.props.little_script.name}</h1>
-                        <section className="stepPanel">
-                            <StepCard step={initial_step}/>
-                        </section>
+                        <SlideControls slides={steps}/>
                     </article>
                 </div>
 
@@ -44,3 +39,25 @@ class Page extends React.Component {
 }
 
 export default Page
+
+const SlideControls = (props) => {
+    const [activeSlide, setActiveSlide] = React.useState(0);
+    const maxSlides = props.slides.length;
+
+    function handleNext() {
+
+        setActiveSlide(prev => prev + 1);
+    }
+
+    function handleBack() {
+        setActiveSlide(prev => prev - 1);
+    }
+    return (
+        <div>
+            <StepCard step={props.slides[activeSlide]}/>
+            <button className="back" onClick={handleBack} disabled={activeSlide === 0}> back </button>
+            <button className="next" onClick={handleNext} disabled={activeSlide === maxSlides - 1}> next </button>
+        </div>
+    )
+
+};
