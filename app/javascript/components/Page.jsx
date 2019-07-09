@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import StepCard from './StepCard';
 import "./page.scss";
+import {Slides, StepCard} from './StepCard';
+import {Controls, ControlButton} from './ControlButton';
 
 class Page extends React.Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class Page extends React.Component {
                     </nav>
                     <article className="script">
                         <h1>{this.props.little_script.name}</h1>
-                        <SlideControls slides={steps}/>
+
+                        <SlideShow slides={steps} />
                     </article>
                 </div>
 
@@ -41,11 +43,10 @@ class Page extends React.Component {
 export default Page
 
 // TODO add valid html for keyboard controls
-const SlideControls = (props) => {
+
+const SlideShow = ({slides}) => {
     const [activeSlide, setActiveSlide] = React.useState(0);
-    const maxSlides = props.slides.length;
-    const [timeRemaining, setTimeRemaining] = React.useState(props.slides[activeSlide].duration);
-    const [isLate, setIsLate] = useState(false);
+    const maxSlides = slides.length;
 
     function handleNext() {
         setActiveSlide(prev => prev + 1);
@@ -55,15 +56,32 @@ const SlideControls = (props) => {
         setActiveSlide(prev => prev - 1);
     }
 
-
-
-
     return (
-        <div>
-            <StepCard step={props.slides[activeSlide]} time={props.slides[activeSlide].duration}/>
-            <button className="back" onClick={handleBack} disabled={activeSlide === 0}> back </button>
-            <button className="next" onClick={handleNext} disabled={activeSlide === maxSlides - 1}> next </button>
+        <div className="slideShow">
+            <Controls >
+                <ControlButton color={"indigo"}
+                               onClick={handleBack}
+                               disabled={activeSlide === 0}>
+                    back
+                </ControlButton>
+
+                <ControlButton color={"indigo"}
+                               onClick={handleNext}
+                               disabled={activeSlide === maxSlides - 1}>
+                    next
+                </ControlButton>
+            </Controls>
+            <Slides>
+                { slides.map((step, index) => (
+                    <StepCard
+                        className="step-card"
+                        key={index}
+                        step={step}
+                        time={step.duration}
+                        isActive={index === activeSlide}
+                    />
+                ))}
+            </Slides>
         </div>
     )
-
 };

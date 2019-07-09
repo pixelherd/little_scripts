@@ -1,15 +1,19 @@
 .CountdownTimer {
   background: transparent;
-  // border: "1px solid black",
   min-height: 250px;
   width: 250px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   p {
     font-weight: 700;
     font-size: 60pt;
     font-family: Arial, sans-serif;
+  }
+
+  .fakeTick {
+    font-weight: 400;
+    font-size: 16pt;
   }
 }

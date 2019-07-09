@@ -3,13 +3,21 @@ import StepName from './StepName';
 import CountdownTimer from "./CountdownTimer";
 import "./card.scss";
 
-const StepCard = (props) => {
+
+export const Slides = (props) => {
+
+    return <div className="Slides" {...props} />
+};
+
+export const StepCard = (props) => {
+
+    let hidden = props.isActive ? '' : 'hidden';
+    const fullName = [props.className, hidden].join(" ");
 
     return (
-            <section className="step-card">
+            <section className={fullName}>
                 <StepName step={props.step}/>
                 <CountdownTimer time={props.time}/>
             </section>
     )
 };
-export default StepCard;

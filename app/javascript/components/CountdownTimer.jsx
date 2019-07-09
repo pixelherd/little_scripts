@@ -1,15 +1,23 @@
 import React, {useState} from 'react';
 import "./countdown_timer.scss"
-const CountdownTimer = props =>  {
+const CountdownTimer = ({time}) =>  {
 
-    const minutes = Math.floor(props.time / 60);
-    const seconds = Math.floor(props.time % 60);
+    const [timeRemaining, setTimeRemaining] = React.useState(time);
+
+    function tick() {
+        setTimeRemaining(timeRemaining => timeRemaining - 1)
+    }
+
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
 
     return (<div className="CountdownTimer">
-        <p>
-            {minutes}:{seconds}
+        <div>
+            <p><button className="fakeTick" onClick={tick}> decrease seconds </button> </p>
+            {/*<p> {timeRemaining}</p>*/}
+            <p>{minutes}:{seconds}</p>
 
-        </p>
+        </div>
     </div>)
 };
 
