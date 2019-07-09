@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import StepName from './StepName';
 import CountdownTimer from "./CountdownTimer";
 import "./card.scss";
@@ -14,28 +14,17 @@ export const StepCard = (props) => {
     let hidden = props.isActive ? '' : 'hidden';
     const fullName = [props.className, hidden].join(" ");
 
-    const [timeRemaining, setTimeRemaining] = useState(props.time);
-
-    useEffect(
-        () => {
-            if (timeRemaining > 0 && props.isActive) {
-                let timer = setTimeout(
-                    () => {
-                        setTimeRemaining(timeRemaining => timeRemaining - 1)
-                    }, 1000);
-                return () => clearTimeout(timer)
-            }
-        },
-        // if either of these values changes, clear the timer; otherwise
-        // either the timers on all slides will update at once, or they don't update
-        // after the first render:
-        [timeRemaining, props.isActive]
-    );
+    // NB: timer gets handed 'isActive' prop so that it remembers where it was,
+    // in case we slide away from a step partway through.
+    // To get a new timer instance every time instead, pass isActive as a "key" prop.
 
     return (
             <section className={fullName}>
                 <StepName step={props.step}/>
-                <CountdownTimer time={timeRemaining}/>
+                <CountdownTimer
+                    time={props.time}
+                    isActive={props.isActive}
+                />
             </section>
     )
 };
