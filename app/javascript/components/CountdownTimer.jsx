@@ -1,23 +1,11 @@
-import React {useState, use}from 'react';
-
+import React from 'react';
+import "./countdown_timer.scss"
 const CountdownTimer = props =>  {
-    let timeRemaining = props.timeRemaining;
-    return (<div className="CountdownTimer"
-                 style={
-                     {background: "transparent",
-                         // border: "1px solid black",
-                         minHeight: '250px',
-                         width: '250px',
-                         display: 'flex',
-                         justifyContent: 'center',
-                         alignItems: 'center'
-                     }
-                 }>
-        <p style={{fontWeight: 700,
-            fontSize: '60pt',
-            fontFamily: 'Arial'
-        }}>
-            {Math.floor(timeRemaining/60)}:{Math.floor(timeRemaining%60)}
+
+
+    return (<div className="CountdownTimer">
+        <p>
+            {Math.floor(props.duration/60)}:{Math.floor(props.duration%60)}
         </p>
     </div>)
 }

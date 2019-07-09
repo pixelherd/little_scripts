@@ -1,0 +1,15 @@
+.CountdownTimer {
+  background: transparent;
+  // border: "1px solid black",
+  min-height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-weight: 700;
+    font-size: 60pt;
+    font-family: Arial, sans-serif;
+  }
+}

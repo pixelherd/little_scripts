@@ -45,7 +45,6 @@ const SlideControls = (props) => {
     const maxSlides = props.slides.length;
 
     function handleNext() {
-
         setActiveSlide(prev => prev + 1);
     }
 
