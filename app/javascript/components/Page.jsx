@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import StepCard from './StepCard';
 import "./page.scss";
 
@@ -40,9 +40,12 @@ class Page extends React.Component {
 
 export default Page
 
+// TODO add valid html for keyboard controls
 const SlideControls = (props) => {
     const [activeSlide, setActiveSlide] = React.useState(0);
     const maxSlides = props.slides.length;
+    const [timeRemaining, setTimeRemaining] = React.useState(props.slides[activeSlide].duration);
+    const [isLate, setIsLate] = useState(false);
 
     function handleNext() {
         setActiveSlide(prev => prev + 1);
@@ -51,9 +54,13 @@ const SlideControls = (props) => {
     function handleBack() {
         setActiveSlide(prev => prev - 1);
     }
+
+
+
+
     return (
         <div>
-            <StepCard step={props.slides[activeSlide]}/>
+            <StepCard step={props.slides[activeSlide]} time={props.slides[activeSlide].duration}/>
             <button className="back" onClick={handleBack} disabled={activeSlide === 0}> back </button>
             <button className="next" onClick={handleNext} disabled={activeSlide === maxSlides - 1}> next </button>
         </div>
