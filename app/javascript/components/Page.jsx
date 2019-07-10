@@ -61,13 +61,13 @@ const SlideShow = ({slides}) => {
     return (
         <div className="slideShow">
             <Controls >
-                <ControlButton color={"indigo"}
+                <ControlButton color={"purple-accent"}
                                onClick={handleBack}
                                disabled={activeSlide === 0}>
                     back
                 </ControlButton>
 
-                <ControlButton color={"indigo"}
+                <ControlButton color={"purple-accent"}
                                onClick={handleNext}
                                disabled={activeSlide === maxSlides - 1}>
                     next

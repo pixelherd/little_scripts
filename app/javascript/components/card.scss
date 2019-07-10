@@ -1,15 +1,24 @@
 .step-card {
-    background: whitesmoke;
+    background: #2AF598;
     padding: 2rem;
-    border: black 2px solid;
+    border: black 3px solid;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    max-width: fit-content;
-    margin: auto;
+    min-width: 200pt;
 }
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .step-card {
+    max-width: 90%;
+    min-width: unset;
+    text-align: center;
+  }
+
 }

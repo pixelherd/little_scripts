@@ -1,8 +1,32 @@
 .control-button {
-  min-height: 32px;
+  min-height: 60px;
+  min-width: 60px;
   padding: 1em;
   background: white;
-  border-radius: 2px;
+  border-radius: 7px;
+}
+
+.purple-accent {
+  background: #341B66;
+  color: white;
+  border: 2px solid #341B66;
+  font-size: medium;
+  transition: 0.2s;
+}
+
+.purple-accent:focus, .purple-accent:hover {
+  background-color: #EA4E6C;
+  background-image: linear-gradient(180deg, #EA4E6C, #F6B83C);
+  color: white;
+  border: 2px solid #341B66;
+  transform: scale(1, 1);
+  outline: none;
+  font-size: medium;
+  box-shadow: 0 0 10px 2px #341B66;
+}
+
+.secondary-green{
+  color: #2AF598
 }
 
 .standard {
