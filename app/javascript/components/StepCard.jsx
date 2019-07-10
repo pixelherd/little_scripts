@@ -20,7 +20,7 @@ export const StepCard = (props) => {
 
     return (
             <section className={fullName}>
-                <StepName step={props.step}/>
+                <StepName name={props.name}/>
                 <CountdownTimer
                     time={props.time}
                     isActive={props.isActive}

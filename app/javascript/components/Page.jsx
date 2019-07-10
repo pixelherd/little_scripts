@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {createRef, useState, useReducer} from "react";
 import "./page.scss";
 import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';
+import {AppNav} from './AppNav'
+
 
 class Page extends React.Component {
     constructor(props) {
@@ -26,11 +28,11 @@ class Page extends React.Component {
         let steps = this.props.little_script.steps;
         return (
                 <div className="playThroughScreen">
-                    <nav>
-                        <button className="close" onClick={this.handleClick}> X </button>
-                    </nav>
-                    <article className="script">
+                    <header>
                         <h1>{this.props.little_script.name}</h1>
+                        <AppNav isPlaying="true" /></header>
+                    <article className="script">
+
 
                         <SlideShow slides={steps} />
                     </article>
@@ -76,7 +78,7 @@ const SlideShow = ({slides}) => {
                     <StepCard
                         className="step-card"
                         key={index}
-                        step={step}
+                        name={step.name}
                         time={step.duration}
                         isActive={index === activeSlide}
                     />

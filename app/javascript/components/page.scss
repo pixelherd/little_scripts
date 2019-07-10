@@ -1,5 +1,23 @@
 $font-serif:  Georgia, serif;
 $cool-pale-grey: #f1f1f1;
+header {
+  border: aqua 1px dashed;
+  display: flex;
+  justify-content: center;
+}
+
+header > h1 {
+  border: 1px solid hotpink;
+  margin: 0;
+}
+@media screen and (max-width: 550px) {
+  header {
+    flex-flow: column-reverse wrap;
+  }
+  header > h1 {
+    align-self: center;
+  }
+}
 
 .playThroughScreen {
     background: antiquewhite;
@@ -9,34 +27,13 @@ $cool-pale-grey: #f1f1f1;
     left: 0;
     top: 0;
 }
-/* The Close Button */
-.close {
-  color: black;
-  background: $cool-pale-grey;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.close:hover,
-.close:focus {
-  color: $cool-pale-grey;
-  background: black;
-  border: 1px solid black;
-  text-decoration: none;
-  cursor: pointer;
-  //transform: scale(1.1, 1.1);
-  box-shadow: 0 0 10px 2px grey;
-}
 
 .script {
   border: white 1px dashed;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: auto;
-  padding: 3rem;
+  align-items: center;
+  margin: 1rem;
   max-width: fit-content;
 }

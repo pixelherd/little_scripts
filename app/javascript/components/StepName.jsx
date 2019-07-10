@@ -1,9 +1,9 @@
 import React from 'react';
 
-const StepName = props => {
+const StepName = ({name}) => {
     return (
     <h1 className="step­text">
-        {props.step.name}
+        {name}
     </h1>
     );
 };
