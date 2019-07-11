@@ -1,17 +1,7 @@
 import React, {useState, useReducer} from "react";
 import "./app_nav.scss";
 import {ControlButton, Controls} from './ControlButton';
-
-
-function reducer (state, action) {
-    switch(action.type) {
-        case 'PAUSE':
-            return { isPlaying: false};
-        case 'PLAY':
-            return { isPlaying: true};
-        default: return state
-    }
-}
+import {reducer} from './Page'
 
 export const AppNav = (props) => {
 

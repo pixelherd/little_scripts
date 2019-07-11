@@ -4,6 +4,15 @@ import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';
 import {AppNav} from './AppNav'
 
+export function reducer (state, action) {
+    switch(action.type) {
+        case 'PAUSE':
+            return { isPlaying: false};
+        case 'PLAY':
+            return { isPlaying: true};
+        default: return state
+    }
+}
 
 class Page extends React.Component {
     constructor(props) {
@@ -32,9 +41,9 @@ class Page extends React.Component {
                         <h1>{this.props.little_script.name}</h1>
                         <AppNav isPlaying="true" /></header>
                     <article className="script">
-
-
                         <SlideShow slides={steps} />
+                        <ProgressBar className="progress-bar" max={this.props.little_script.total_seconds} value={30}>
+                        </ProgressBar>
                     </article>
                 </div>
 
@@ -85,5 +94,15 @@ const SlideShow = ({slides}) => {
                 ))}
             </Slides>
         </div>
+    )
+};
+
+const ProgressBar = (props) => {
+
+
+    return (
+        <progress max={props.max} value={props.value}>
+            {props.children}
+        </progress>
     )
 };
