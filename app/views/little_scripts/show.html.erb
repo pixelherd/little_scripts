@@ -1,14 +1,13 @@
 <h1><strong><%= @little_script.name %></strong></h1>
 <h2>Could be finished by <%= (Time.now + @little_script.steps.map(&:duration).sum).strftime('%H:%M') %></h2>
 <h2> <button class="go-button" id="<%= @little_script.id %>"> START PLAY-THROUGH </button></h2>
-
+<%= content_tag :section,
+                class: "rNode",
+                id: @little_script[:id].to_s,
+                data: (@little_script.to_hash).to_json do %>
+  <% end %>
 <ul style="width: 300px; padding-left: 0">
-  <% @little_script.steps.each do |step| %>
-    <li style="display: flex; justify-content: space-evenly; border-bottom: solid pink 1px">
-      <span style="width: 70%"><%= step.name %> </span>
-      <span style="width: 30%"> <%= (step.duration/60/60) %> hr <%= step.duration/60%60%>min</span>
-    </li>
-  <%end%>
+  <%= render(@little_script.steps) %>
 </ul>
 <details title="Add steps" open>
   <summary class="cheeky_heading">ADD STEPS</summary>

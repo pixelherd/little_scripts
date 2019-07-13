@@ -3,7 +3,7 @@ class LittleScriptsController < ApplicationController
 
   # TODO: fake user to be replaced with current_user after auth works.
   # TODO: implement "guest user"
-  FAKE_USER_ID = 1
+  FAKE_USER_ID = 2
 
   # GET /users/1/little_scripts
   # GET /users/1/little_scripts.json

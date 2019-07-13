@@ -25,6 +25,8 @@ function startPlayThrough(e){
     console.log(currentPage);
     document.title = "Play-Thorough";
     history.pushState(currentPage, document.title, currentPage);
+
+    // TODO refactor to mount 'body' rather than 'root'? No use in having the header of host page hanging around
     ReactDOM.render(
         <Page id={scriptID} little_script={little_script}/>,
         document.getElementById('root'),
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageState = {};
     const nodes = Array.from(document.querySelectorAll(".rNode"));
     pageState["scripts"] = nodes.map(node => JSON.parse(node.getAttribute('data')));
+
     const preloadedState = localStorage.state ? JSON.parse(localStorage.state) : pageState;
     let store = configureStore(preloadedState);
     window.store = store;

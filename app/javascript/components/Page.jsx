@@ -42,8 +42,6 @@ class Page extends React.Component {
                         <AppNav isPlaying="true" /></header>
                     <article className="script">
                         <SlideShow slides={steps} />
-                        <ProgressBar className="progress-bar" max={this.props.little_script.total_seconds} value={30}>
-                        </ProgressBar>
                     </article>
                 </div>
 
@@ -56,7 +54,7 @@ export default Page
 // TODO add valid html for keyboard controls
 
 const SlideShow = ({slides}) => {
-    const [activeSlide, setActiveSlide] = React.useState(0);
+    const [activeSlide, setActiveSlide] = useState(0);
     const maxSlides = slides.length;
 
     function handleNext() {
@@ -94,15 +92,5 @@ const SlideShow = ({slides}) => {
                 ))}
             </Slides>
         </div>
-    )
-};
-
-const ProgressBar = (props) => {
-
-
-    return (
-        <progress max={props.max} value={props.value}>
-            {props.children}
-        </progress>
     )
 };

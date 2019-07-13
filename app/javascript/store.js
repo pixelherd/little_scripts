@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer'
 
 const addLoggingToDispatch = store => next => action => {
@@ -15,7 +15,8 @@ const addLoggingToDispatch = store => next => action => {
 // }
 
 export const configureStore = (preloadedState = {}) => {
-    const store = createStore(rootReducer, preloadedState, applyMiddleware(addLoggingToDispatch));
+    const store = createStore(rootReducer, preloadedState,
+                            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     store.subscribe(() => {
         localStorage.state = JSON.stringify(store.getState());
     });
