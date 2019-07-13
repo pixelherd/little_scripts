@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer'
+import lilScriptsReducer from "./reducers/lilScriptsReducer";
 
 const addLoggingToDispatch = store => next => action => {
     console.log("old state: ", store.getState());
@@ -8,14 +9,8 @@ const addLoggingToDispatch = store => next => action => {
     console.log("new state: ", store.getState())
 };
 
-// function applyMiddlewares(store, middlewares) {
-//     let dispatch = store.dispatch;
-//     middlewares.forEach(ware => dispatch=ware(store)(dispatch));
-//     return Object.assign({}, store, { dispatch })
-// }
-
 export const configureStore = (preloadedState = {}) => {
-    const store = createStore(rootReducer, preloadedState,
+    const store = createStore(lilScriptsReducer, preloadedState,
                             window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     store.subscribe(() => {
         localStorage.state = JSON.stringify(store.getState());

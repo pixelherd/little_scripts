@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageState = {};
     const nodes = Array.from(document.querySelectorAll(".rNode"));
     pageState["scripts"] = nodes.map(node => JSON.parse(node.getAttribute('data')));
-
     const preloadedState = localStorage.state ? JSON.parse(localStorage.state) : pageState;
     let store = configureStore(preloadedState);
     window.store = store;
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // the play-through gets generated on click
     goButtons.forEach(button => button.addEventListener("click", startPlayThrough));
-
+    
     // are we reloading from an ongoing play-through?
     let re = new RegExp('#/*');
     if (re.test(document.location.toString())) {
