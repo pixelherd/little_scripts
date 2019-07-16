@@ -1,6 +1,8 @@
 <h1><strong><%= @little_script.name %></strong></h1>
-<h2>Could be finished by <%= (Time.now + @little_script.steps.map(&:duration).sum).strftime('%H:%M') %></h2>
-<h2> <button class="go-button" id="<%= @little_script.id %>"> START PLAY-THROUGH </button></h2>
+<h2>Could be finished by <%= react_component('Clock',
+                                             {date: (Time.now + @little_script.steps.map(&:duration).sum)},
+                                             tag: :span, class: 'my-clock')%> </h2>
+<button class="go-button"> start play-through </button>
 <%= content_tag :section,
                 class: "rNode",
                 id: @little_script[:id].to_s,
@@ -13,3 +15,5 @@
   <summary class="cheeky_heading">ADD STEPS</summary>
 <%= render 'steps/form', little_script_id: @little_script.id %>
 </details>
+<button id="modal-button" onclick="document.querySelector('#modal').style.display=`flex`"> open modal </button>
+<div id="modal" style="display: none"> <%= react_component('Hello', {name: "you"})%> </div>
