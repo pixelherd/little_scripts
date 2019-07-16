@@ -13,6 +13,7 @@ export const ControlButton = (props) => {
             <button onClick={props.onClick}
                     className={fullName}
                     disabled={props.disabled}
+                    autoFocus={props.autofocus}
                     aria-label={props.label}
                     aria-describedby={props.tooltipID}
                     type={props.submit ? 'submit' : 'button'}>

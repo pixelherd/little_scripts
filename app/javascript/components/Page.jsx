@@ -76,7 +76,8 @@ const SlideShow = ({slides}) => {
 
                 <ControlButton color={"purple-accent"}
                                onClick={handleNext}
-                               disabled={activeSlide === maxSlides - 1}>
+                               disabled={activeSlide === maxSlides - 1}
+                               autofocus={!(activeSlide === maxSlides - 1)}>
                     next
                 </ControlButton>
             </Controls>
