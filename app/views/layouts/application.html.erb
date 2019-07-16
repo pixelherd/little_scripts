@@ -12,24 +12,26 @@
     <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_pack_tag 'playthrough' %>
+    <%= javascript_pack_tag 'hello_webpacker_react' %>
 
   </head>
 
   <body>
-  <p class="notice" id="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div id="root">
+      <p class="notice" id="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
-  <div class="header-links">
-    <%if user_signed_in?  %>
-      <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Make A New Account", new_user_registration_path %>
-    <% end %>
+      <div class="header-links" style="display: flex; justify-content: space-between">
+        <%if user_signed_in?  %>
+        <span> <%= link_to "Home", root_path %> </span>
+        <span>  <%= button_to "Sign Out", destroy_user_session_path, method: :delete %> </span>
+        <% else %>
+        <span> <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Make A New Account", new_user_registration_path %> </span>
+      <% end %>
+      </div>
 
-  </div>
-   <div id="root">
-     <%= yield %>
+         <%= yield %>
    </div>
 
   </body>
