@@ -2,96 +2,83 @@ import React, {createRef, useState, useReducer} from "react";
 import "./page.scss";
 import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';
-import {AppNav} from './AppNav'
+import {NavToolbar} from './NavToolbar'
+import {useGlobals} from "../hooks";
+import {ProgressPanel} from "./ProgressPanel";
+import {ProgressBar} from "./ProgressBar";
+import {PuppetClock} from "./PuppetClock";
 
-export function reducer (state, action) {
-    switch(action.type) {
-        case 'PAUSE':
-            return { isPlaying: false};
-        case 'PLAY':
-            return { isPlaying: true};
-        default: return state
+export const Page = (props) => {
+    const [showing, setIsShowing] = useState(props.show);
+    const [state, dispatch] = useGlobals();
+    let dynamicName = state.isPlaying ? 'active' : 'paused';
+
+    let startClock = <PuppetClock time={state.startTime}/>;
+    let endClock = <PuppetClock time={state.finishTime} />;
+    let progressBar = <ProgressBar isActive={state.isPlaying}
+                                   maxValue={100}
+                                   progress={state.progress}/>;
+
+    function handleFinish() {
+        dispatch({type: 'FINISH'});
+        setIsShowing(showing => !showing)
     }
-}
-
-class Page extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            slides: [],
-        };
-        this.handleClick = this.handleClick.bind(this);
+    if (!props.show || !showing) {
+        return null;
     }
-    componentDidMount() {
-        this.setState({slides: this.props.little_script.steps});
-    }
+    return (
+       <div className="playThroughScreen" id={`play-through-screen-${dynamicName}`}>
+            <NavToolbar />
+                <main className="script">
 
-    handleClick(e) {
-        e.preventDefault();
-        window.history.go(-1)
-    }
+                    <h1 className="script-title">{state.data.title}</h1>
 
+                        <SlideShow />
 
-    render() {
-        let initial_step = this.props.little_script.steps[0];
-        let steps = this.props.little_script.steps;
-        return (
-                <div className="playThroughScreen">
-                    <header>
-                        <h1>{this.props.little_script.name}</h1>
-                        <AppNav isPlaying="true" /></header>
-                    <article className="script">
-                        <SlideShow slides={steps} />
-                    </article>
-                </div>
+                    <ProgressPanel leftClock={startClock} progressBar={progressBar} rightClock={endClock}/>
+                </main>
 
-        )
-    }
-}
+       </div>
 
-export default Page
+    )
+};
 
 // TODO add valid html for keyboard controls
 
-const SlideShow = ({slides}) => {
-    const [activeSlide, setActiveSlide] = useState(0);
-    const maxSlides = slides.length;
-
-    function handleNext() {
-        setActiveSlide(prev => prev + 1);
-    }
-
-    function handleBack() {
-        setActiveSlide(prev => prev - 1);
-    }
+export const SlideShow = (props) => {
+    const [state, dispatch] = useGlobals();
+    const maxSlides = state.data.slides.length;
+    let activeSlideIdx = state.activeSlideIdx;
 
     return (
         <div className="slideShow">
             <Controls >
                 <ControlButton color={"purple-accent"}
-                               onClick={handleBack}
-                               disabled={activeSlide === 0}>
+                               onClick={()=> dispatch({type:'PREV_SLIDE', idx: activeSlideIdx})}
+                               disabled={activeSlideIdx===0}>
                     back
                 </ControlButton>
 
                 <ControlButton color={"purple-accent"}
-                               onClick={handleNext}
-                               disabled={activeSlide === maxSlides - 1}
-                               autofocus={!(activeSlide === maxSlides - 1)}>
+                               onClick={()=> dispatch({type:'NEXT_SLIDE', idx: activeSlideIdx})}
+                               disabled={activeSlideIdx===maxSlides - 1}
+                               autofocus={!(activeSlideIdx === maxSlides - 1)}>
                     next
                 </ControlButton>
             </Controls>
             <Slides>
-                { slides.map((step, index) => (
+                { state.data.slides.map((step, index) => (
                     <StepCard
                         className="step-card"
                         key={index}
+                        id={step.id}
                         name={step.name}
                         time={step.duration}
-                        isActive={index === activeSlide}
+                        isActive={index === activeSlideIdx}
                     />
                 ))}
             </Slides>
+
         </div>
     )
 };
