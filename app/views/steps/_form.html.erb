@@ -1,0 +1,23 @@
+<form action="/steps" method="POST" id="createStepForm">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input
+    type="hidden"
+    name="step[little_script_id]"
+    id="step[little_script_id]"
+    value="<%= little_script_id %>"
+    >
+  <label>
+    What the step?
+    <input type="text" name="step[name]" id="step[name]">
+  </label>
+  <label> How long does it take?
+    Hours: <input type="number" name="step[duration_hours]" id="step[duration_hours]" min="0" max="60" value="0">
+    Minutes: <input type="number" name="step[duration_minutes]" id="step[duration_minutes]" min="1" max="60" value="3">
+  </label>
+  <br>
+  <input type="Submit" value="Create Step!">
+</form>
+<!--TODO: this is broken; when did it break?-->

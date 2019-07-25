@@ -1,0 +1,15 @@
+<h1><strong><%= @little_script.name %></strong></h1>
+<h2>Could be finished by <%= (Time.now + @little_script.steps.map(&:duration).sum).strftime('%H:%M') %></h2>
+<h2> <button class="go-button" id="<%= @little_script.id %>"> START PLAY-THROUGH </button></h2>
+<%= content_tag :section,
+                class: "rNode",
+                id: @little_script[:id].to_s,
+                data: (@little_script.to_hash).to_json do %>
+  <% end %>
+<ul style="width: 300px; padding-left: 0">
+  <%= render(@little_script.steps) %>
+</ul>
+<details title="Add steps" open>
+  <summary class="cheeky_heading">ADD STEPS</summary>
+<%= render 'steps/form', little_script_id: @little_script.id %>
+</details>

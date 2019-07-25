@@ -1,0 +1,78 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$font-serif:  Georgia, serif;
+$cool-pale-grey: #f1f1f1;
+$form-button-outline: navy 3px solid;
+
+#newScriptForm {
+  box-sizing: border-box;
+  background-color: $cool-pale-grey;
+  font-family: $font-serif;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Georgia, serif;
+    border: 1px solid #aaaaaa;
+  }
+
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: deeppink;
+  }
+
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+
+  button {
+    overflow:auto;
+    background-color: dodgerblue;
+    color: #ffffff;
+    border: navy 1px solid;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Garamond, serif;
+    cursor: pointer;
+  }
+
+  button:hover, button:focus {
+    opacity: 0.8;
+    outline: $form-button-outline;
+  }
+
+  #prevBtn {
+       background-color: #bbbbbb;
+     }
+
+  /* Stepper circles at the bottom of the form,
+   TODO: replace with text 1/2 or something, as the circles look clickable when they aren't
+   */
+  .formStep {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .formStep.active {
+    opacity: 1;
+  }
+
+  /* Mark the steps that are finished and valid: */
+  .formStep.finish {
+    background-color: blue;
+  }
+
+}
+

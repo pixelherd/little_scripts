@@ -4,12 +4,33 @@
     <title>LittleScripts</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+      />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'playthrough' %>
+
   </head>
 
   <body>
-    <%= yield %>
+  <p class="notice" id="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <div class="header-links">
+    <%if user_signed_in?  %>
+      <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Make A New Account", new_user_registration_path %>
+    <% end %>
+
+  </div>
+   <div id="root">
+     <%= yield %>
+   </div>
+
   </body>
 </html>

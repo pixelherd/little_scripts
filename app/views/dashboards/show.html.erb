@@ -1,0 +1,20 @@
+<article>
+<b>Your scripts:</b>
+
+<ul id="script_list">
+  <% @dashboard.each do |script| %>
+    <li class="script-list-item" >
+      <span> <%= link_to script[:name], little_script_path(script[:id]) %> </span>
+      <span> <%= script[:duration_hours]%> hrs <%= script[:duration_minutes] %> mins </span>
+      <button class="go-button" id="<%= script[:id] %>"> START PLAY-THROUGH </button>
+      <%= content_tag :section,
+          class: "rNode",
+          id: script[:id].to_s,
+          data: script.to_json do %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+</article>
+<%= render 'little_scripts/form' %>

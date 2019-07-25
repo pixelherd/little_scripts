@@ -1,0 +1,34 @@
+.step-card {
+    background-color: white;
+    background-image: linear-gradient(0deg, #2AF598, white);
+    padding: 2rem;
+    border: black 3px solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .step-card {
+    width: 90%;
+    text-align: center;
+  }
+
+}
+
+.step-card > * {
+  color: #1C1A1C
+}
+
+.step-card > h1 {
+  font-family: "Helvetica Neue", "sans-serif";
+  font-weight: 700;
+  font-size: 16pt;
+  font-variant-caps: titling-caps;
+}
