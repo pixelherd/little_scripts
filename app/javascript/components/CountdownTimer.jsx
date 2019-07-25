@@ -1,25 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import "./countdown_timer.scss"
-const CountdownTimer = ({time, isActive}) =>  {
+import {useGlobals} from "../hooks";
 
+const CountdownTimer = ({stepID, time, isActive}) =>  {
+    const [state, dispatch] = useGlobals();
     const [timeRemaining, setTimeRemaining] = useState(time);
 
     // TODO implement isLate and a count-up timer after the first one runs out
 
     useEffect(
         () => {
-            if (timeRemaining > 0 && isActive) {
+            if (timeRemaining > 0 && isActive && state.isPlaying) {
                 let timer = setTimeout(
                     () => {
-                        setTimeRemaining(timeRemaining => timeRemaining - 1)
+                        setTimeRemaining(timeRemaining => timeRemaining - 1);
+                        if (timeRemaining === 0) {
+                            dispatch({type: "UPDATE_CURRENT_TIMER", payload: {timeRemaining}})
+                        }
                     }, 1000);
                 return () => clearTimeout(timer)
             }
         },
-        // if either of these values changes, clear the timer; otherwise
+        // if either of these values changes, clear the timer and rerender; otherwise
         // either the timers on all slides will update at once, or they don't update
         // after the first render:
-        [timeRemaining, isActive]
+        [timeRemaining, isActive, state.isPlaying, state.currentTimer]
     );
 
     const minutes = Math.floor(timeRemaining / 60);

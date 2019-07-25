@@ -1,56 +1,72 @@
-$font-serif:  Georgia, serif;
-$cool-pale-grey: #f1f1f1;
-$primary-pink: #EA4E6C;
-$primary-orange: #F6B83C;
-$secondary-blue: #08AEEA;
-$secondary-green: #2AF598;
-$accent-purple: #341B66;
-$accent-purple-transparent: rgba(51, 27, 100, 0.75);
-$blue-green-gradient: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
+@import url('https://fonts.googleapis.com/css?family=Literata:400,700&display=swap');
+:root {--font-serif:  Georgia, serif;
+  --font-display: Futura, sans-serif;
+  --font-text: Literata, serif;
+  --font-dark: #1C1A1C;
+  --cool-pale-grey: #f1f1f1;
+  --primary-pink: #EA4E6C;
+  --primary-orange: #F6B83C;
+  --secondary-blue: #08AEEA;
+  --secondary-green: #2AF598;
+  --accent-purple: #341B66;
+  --accent-purple-transparent: rgba(51, 27, 100, 0.75);
+  --blue-green-gradient: linear-gradient(90deg, #08AEEA, #2AF598);
+  --orange-pink-gradient: linear-gradient(0deg, #F6B83C, #EA4E6C);
+}
+
+h1 {
+  line-height: 1ch;
+  margin: auto;
+}
 
 .playThroughScreen {
-  background-color: #EA4E6C;
-  background-image: linear-gradient(0deg, #EA4E6C, #F6B83C);
+  background-color: var(--primary-pink);
+  background-image: var(--orange-pink-gradient);
   height: 100vh;
   width: 100%;
   position: fixed; /* Stay in place */
   left: 0;
   top: 0;
-}
-
-header {
+  color: var(--font-dark);
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  color: #1C1A1C;
+}
+#play-through-screen-active {
+  background-color: var(--primary-orange);
+  background-image: var(--orange-pink-gradient);
 }
 
-header > h1 {
-  margin: 0;
-  font-family: "Futura", "sans-serif";
-  font-weight: 700;
-  font-size: 36px;
-  font-variant-caps: all-small-caps;
-}
-@media screen and (max-width: 550px) {
-  header {
-    flex-flow: column-reverse wrap;
-  }
-  header > h1 {
-    align-self: center;
-  }
-  .controls {
-    min-width: unset;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    top: 20pt;
+#play-through-screen-paused {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image:
+          linear-gradient(to bottom,
+                  rgba(255, 255, 255, .8),
+                  rgba(0, 0, 0, .25));
+
+  .controls, .slideShow, .app-button {
+    display: none;
   }
 }
 
 .script {
-  display: block;
-  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .script-title, .progress-panel {
+    padding: 2rem;
+  }
+  .script-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 36px;
+    font-variant: all-small-caps;
+  }
 }
+
 .slideShow {
   display: flex;
   flex-direction: column;
@@ -58,55 +74,140 @@ header > h1 {
 }
 
 .controls {
-  width: 400px;
+  width: 500px;
   display: flex;
   justify-content: space-between;
-  position: relative;
-  top: 30px;
+  position: absolute;
+  top: 47vh;
 }
 
-@media screen and (max-width: 400px) {
-  .controls {
-    min-width: 100%;
-    max-width: 100%;
+.progress-panel {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  span {
+    font-family: var(--font-text);
+    font-size: larger;
+    line-height: 1ch;
+    padding: 0 1ch;
   }
 }
 
 progress {
-  margin: 30px;
-  display: inline-block;
-  border-radius: 0.28571429rem;
-  transition: width 0.1s ease, background-color 0.1s ease;
-  height: 20px;
-  width: 350px;
-}
-progress[value] {
-  /* Reset the default appearance */
+  /* Reset*/
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
 
-  /* Get rid of default border in Firefox. */
+  /* Nuke the random white border in Firefox */
   border: none;
+
+  /* The inset shadow in Firefox & Edge */
+  background-color: var(--cool-pale-grey);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px var(--accent-purple-transparent) inset;
+
+  /*  sensible size  */
+  height: 2ex;
+
 }
 progress[value]::-webkit-progress-bar {
-  background-color: $cool-pale-grey;
+  /* The inset shadow in Chrome/Safari/Opera */
+
+  background-color: var(--cool-pale-grey);
   border-radius: 2px;
-  box-shadow: 0 2px 5px $accent-purple-transparent inset;
+  box-shadow: 0 2px 5px var(--accent-purple-transparent) inset;
 }
 progress[value]::-webkit-progress-value {
   background-image:
           -webkit-linear-gradient(top,
                   rgba(255, 255, 255, .25),
                   rgba(0, 0, 0, .25)),
-          -webkit-linear-gradient(left, $secondary-blue, $secondary-green);
+          -webkit-linear-gradient(left, var(--secondary-blue), var(--secondary-green));
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+  transition: all ease 1s;
+}
+
+progress[value]::-moz-progress-bar {
+  background-image:
+          -moz-linear-gradient(top,
+                  rgba(255, 255, 255, .25),
+                  rgba(0, 0, 0, .25)),
+          -moz-linear-gradient(left, var(--secondary-blue), var(--secondary-green));
 
   border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
-.progress-bar:first-child {
-  margin: 0 0 2.5em;
+
+.progress-paused[value]::-webkit-progress-bar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) inset;
 }
-.progress-bar:last-child {
-  margin: 0 0 1.5em;
+.progress-paused[value]::-webkit-progress-value {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image:
+          -webkit-linear-gradient(-45deg,
+                  transparent 33%, rgba(0, 0, 0, .2) 33%,
+                  rgba(0,0, 0, .2) 66%, transparent 66%),
+          -webkit-linear-gradient(top,
+                  rgba(255, 255, 255, .8),
+                  rgba(0, 0, 0, .25));
+}
+.progress-paused[value]::-moz-progress-bar {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image:
+          -moz-linear-gradient(-45deg,
+                  transparent 33%, rgba(0, 0, 0, .2) 33%,
+                  rgba(0,0, 0, .2) 66%, transparent 66%),
+          -moz-linear-gradient(top,
+                  rgba(255, 255, 255, .8),
+                  rgba(0, 0, 0, .25));
+}
+.progress-complete[value] {
+  box-shadow: 0 0 5px var(--secondary-blue);
+}
+
+@media screen and (max-width: 499px) {
+
+  .controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: static;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 450px){
+  .playThroughScreen {
+    height: 100vh;
+    justify-content: space-around;
+  }
+
+  .script {
+    height: inherit;
+    margin-bottom: 1rem;
+
+    .script-title, .progress-panel {
+      padding: 0;
+    }
+  }
+
+  .slideShow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+  }
+  .controls {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 40vh;
+
+    span:nth-of-type(2) {
+      display: none;
+    }
+  }
+
 }

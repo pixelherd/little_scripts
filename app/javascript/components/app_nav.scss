@@ -1,12 +1,10 @@
-$font-serif:  Georgia, serif;
-$cool-pale-grey: #f1f1f1;
-
 .app-nav {
   position: fixed;
   right: 0;
   top: 0;
   display: flex;
   justify-content: flex-end;
+  transition: all ease 2s;
 }
 
 /* individual buttons */
@@ -37,11 +35,6 @@ $cool-pale-grey: #f1f1f1;
   box-shadow: 0 0 10px 2px #004d40;
 }
 
-@media screen and (max-width: 550px) {
-  .app-nav {
-    position: relative;
-  }
-}
 @media screen and (max-width: 400px) {
   .app-button:hover {
     transform: scale(1, 1);
@@ -69,5 +62,55 @@ $cool-pale-grey: #f1f1f1;
     padding: 10pt;
     border-radius: 18pt;
     margin: 2pt;
+  }
+}
+.app-nav > .modal-sheet {
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  background-color: var(--accent-purple);
+  border: 3px solid var(--accent-purple);
+  background-image:  var(--orange-pink-gradient);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal-sheet > button {
+  background: transparent;
+  color: var(--accent-purple);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 400px) {
+  .modal-sheet {
+    width: 90%;
+    height: 90%;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+  }
+  .modal-sheet > button {
+    font-size: 3.5rem;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 450px) {
+
+  .app-button {
+
+    padding: 0.5rem;
+    border-radius: 20px;
+    min-height: 30px;
+    min-width: 40px;
+    margin: 0.1rem;
+
+    span:last-child {
+      display: none;
+    }
   }
 }

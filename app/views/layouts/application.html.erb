@@ -18,17 +18,17 @@
   <body>
   <p class="notice" id="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <div id="root">
+    <div class="header-links">
+      <%if user_signed_in?  %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+        <%= link_to "Make A New Account", new_user_registration_path %>
+      <% end %>
 
-  <div class="header-links">
-    <%if user_signed_in?  %>
-      <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Make A New Account", new_user_registration_path %>
-    <% end %>
+    </div>
 
-  </div>
-   <div id="root">
      <%= yield %>
    </div>
 

@@ -1,68 +1,45 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+import React from 'react'
+import { render } from 'react-dom'
+import {Provider} from "../hooks";
+import {Page} from '../components/Page'
+import {rootReducer} from '../reducers/rootReducer'
+import {getEndTime} from "../utils";
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
-
-const log1 = document.createElement("p");
-
+const scriptID = 1;
+const little_script = {
+    id: 1,
+    title: "Test Script",
+    steps: [{id: 1, name: "First Step", duration: 60},
+        {id: 2, name: "Second Step", duration: 60},
+        {id: 3, name: "Third Step", duration: 60}]
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-    const stepFormElement = document.getElementById('createStepForm');
-    if (stepFormElement) {
-        stepFormElement.addEventListener("submit", handleStepSubmit);
-        console.log("listening");
-    }
-});
+     render(
+         <Provider initialState={initialState} reducer={rootReducer}>
+             <Page id={scriptID} show={true}/>
+         </Provider>,
+    document.getElementById('root'),
+    )}
+);
 
-
-
-// do we have localStorage? if so, we'll store the new steps for offline use
-// fn from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
-// function storageAvailable(type) {
-//     let storage;
-//     try {
-//         storage = window[type];
-//         const x = '__storage_test__';
-//         storage.setItem(x, x);
-//         storage.removeItem(x);
-//         return true;
-//     }
-//     catch(e) {
-//         return e instanceof DOMException && (
-//                 // everything except Firefox
-//             e.code === 22 ||
-//             // Firefox
-//             e.code === 1014 ||
-//             // test name field too, because code might not be present
-//             // everything except Firefox
-//             e.name === 'QuotaExceededError' ||
-//             // Firefox
-//             e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-//             // acknowledge QuotaExceededError only if there's something already stored
-//             (storage && storage.length !== 0);
-//     }
-// }
-function step(little_script_id, name, duration_hours, duration_minutes) {
-    this.little_script_id = little_script_id,
-    this.name = name,
-    this.duration_hours = duration_hours,
-    this.duration_minutes = duration_minutes  }
-
-
-const handleStepSubmit = (e) => {
-    e.preventDefault();
-    log1.textContent = `Form Submitted! Time stamp: ${e.timeStamp}`;
-    const stepName = document.querySelector(".favorite-input");
+let startTime = Date.now();
+let endTime = getEndTime(startTime, little_script.steps);
+const initialState = {
+    history: [],
+    data: {
+        title: little_script.title,
+        totalSeconds: little_script.total_seconds,
+        slides: little_script.steps,
+    },
+    startTime: startTime,
+    finishTime: endTime,
+    delayTimestamp: 0,
+    activeSlideIdx: 0,
+    currentTimer: little_script.steps[0].duration,
+    progress: 1,
+    isPlaying: true
 };

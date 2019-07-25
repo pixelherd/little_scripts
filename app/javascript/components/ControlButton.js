@@ -11,11 +11,15 @@ export const ControlButton = (props) => {
 
         return (
             <button onClick={props.onClick}
+                    value={props.value}
                     className={fullName}
                     disabled={props.disabled}
+                    autoFocus={props.autofocus}
                     aria-label={props.label}
                     aria-describedby={props.tooltipID}
                     type={props.submit ? 'submit' : 'button'}>
+                <span>{props.icon ? props.icon : ""}</span>
+                <span>{props.label ? props.label : ""}</span>
                 {props.children}
             </button>
         )
@@ -31,5 +35,6 @@ ControlButton.defaultProps = {
     hover: false,
     active: false,
     label: null,
-    tooltipID: null
+    tooltipID: null,
+    icon: null
 };

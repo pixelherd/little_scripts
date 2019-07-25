@@ -5,9 +5,31 @@
     border: black 3px solid;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin: auto;
+
+
+    h1 {
+        font-family: var(--font-text);
+        font-weight: 400;
+        font-size: xx-large;
+        font-variant: all-small-caps;
+        line-height: inherit;
+      }
+
+    .CountdownTimer {
+      background: transparent;
+      width: 240px;
+
+      p {
+        font-weight: 700;
+        font-size: 60pt;
+        font-family: Futura, sans-serif;
+        margin: auto;
+      }
+    }
 }
 
 .hidden {
@@ -16,19 +38,29 @@
 
 @media screen and (max-width: 400px) {
   .step-card {
-    width: 90%;
+    width: fit-content;
     text-align: center;
   }
-
 }
+@media screen and (orientation: landscape) and (max-height: 450px){
+  .step-card {
+    padding: 2rem;
+  }
 
-.step-card > * {
-  color: #1C1A1C
-}
+  .step-text{
+    font-size: 14pt;
+    margin: auto;
+   }
 
-.step-card > h1 {
-  font-family: "Helvetica Neue", "sans-serif";
-  font-weight: 700;
-  font-size: 16pt;
-  font-variant-caps: titling-caps;
+  .CountdownTimer {
+    background: transparent;
+    width: 240px;
+
+    p {
+      font-weight: 700;
+      font-size: 36pt;
+      font-family: Futura, sans-serif;
+      margin: auto;
+    }
+  }
 }
