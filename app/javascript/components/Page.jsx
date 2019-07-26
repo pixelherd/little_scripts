@@ -1,4 +1,4 @@
-import React, {createRef, useState, useReducer} from "react";
+import React, {createRef, useState, useEffect, useReducer} from "react";
 import "./page.scss";
 import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';
@@ -33,7 +33,9 @@ export const Page = (props) => {
 
                     <h1 className="script-title">{state.data.title}</h1>
 
-                        <SlideShow />
+                        // Pass globalCounter as a key so that the whole
+                        // shebang re-renders on reset
+                        <SlideShow key={state.globalCounter}/>
 
                     <ProgressPanel leftClock={startClock} progressBar={progressBar} rightClock={endClock}/>
                 </main>

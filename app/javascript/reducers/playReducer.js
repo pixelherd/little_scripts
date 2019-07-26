@@ -12,7 +12,7 @@ const little_script = {
 let startTime = Date.now();
 let endTime = getEndTime(startTime, little_script.steps);
 const initialState = {
-    history: [],
+    globalCounter: 0,
     data: {
         title: little_script.title,
         totalSeconds: little_script.total_seconds,

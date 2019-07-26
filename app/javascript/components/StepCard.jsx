@@ -2,6 +2,7 @@ import React from "react";
 import StepName from './StepName';
 import CountdownTimer from "./CountdownTimer";
 import "./card.scss";
+import {useGlobals} from "../hooks";
 
 
 export const Slides = (props) => {
@@ -11,6 +12,7 @@ export const Slides = (props) => {
 };
 
 export const StepCard = ({stepID, name, isActive, className, time}) => {
+    const [state, dispatch] = useGlobals();
 
     let hidden = isActive ? '' : 'hidden';
     let fullName = [className, hidden].join(" ");

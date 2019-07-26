@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useReducer} from "react";
+import React, {createContext, useContext, useReducer, useCallback} from "react";
 
 export const GlobalContext = createContext();
 export const Provider = ({reducer, initialState, children}) =>(

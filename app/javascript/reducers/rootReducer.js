@@ -1,12 +1,18 @@
 import playReducer from "./playReducer";
 
 export const rootReducer = ((state, action) => {
-    let history = state.history.concat({...state});
+
+    // global counter effectively serves as a unique ID
+    // for the slideshow, so that all timers reset at playthrough restart
+
+    let historyCounter = state.globalCounter;
 
     if (action.type === "RESTART") {
+        const {initialState} = action;
         return {
-            ...playReducer(state.history[0], action), history: history
+            ...playReducer(initialState, action),
+            globalCounter: historyCounter + 1
         }
     }
-    return {...playReducer(state, action), history: history}
+    return {...playReducer(state, action), globalCounter: historyCounter}
 });

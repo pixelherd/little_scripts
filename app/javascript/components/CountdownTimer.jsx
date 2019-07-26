@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {useGlobals} from "../hooks";
 
 const CountdownTimer = ({stepID, time, isActive}) =>  {
@@ -23,7 +23,7 @@ const CountdownTimer = ({stepID, time, isActive}) =>  {
         // if either of these values changes, clear the timer and rerender; otherwise
         // either the timers on all slides will update at once, or they don't update
         // after the first render:
-        [timeRemaining, isActive, state.isPlaying, state.currentTimer]
+        [timeRemaining, isActive, state.isPlaying]
     );
 
     const minutes = Math.floor(timeRemaining / 60);
