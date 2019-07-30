@@ -1,8 +1,5 @@
 export const NEXT_SLIDE = 'NEXT_SLIDE';
 export const PREV_SLIDE = 'PREV_SLIDE';
-export const CALC_FINISH_TIME = 'CALC_FINISH_TIME';
-export const SET_PROGRESS = 'SET_PROGRESS';
-export const UPDATE_CURRENT_TIMER = 'UPDATE_CURRENT_TIMER';
 export const PAUSE = 'PAUSE';
 export const RESUME = 'RESUME';
 export const RESTART = 'RESTART';
@@ -32,14 +29,4 @@ export const startDelay = (timestamp) => {
     return {type: START_DELAY, timestamp: timestamp}
 };
 
-export const calcFinishTime = (now) => {
-    return { type: CALC_FINISH_TIME, now }
-};
 
-export const setProgress = (number) => {
-    return { type: SET_PROGRESS, number }
-};
-
-export const updateTimer = (time) => {
-    return { type: UPDATE_CURRENT_TIMER, time }
-};

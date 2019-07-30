@@ -20,7 +20,9 @@ let startTime = Date.now();
 let endTime = startTime + little_script.total_seconds * 1000;
 export const initialTimings = {
     total_seconds: little_script.total_seconds,
-    total_delay: 0,
+    past: 0,
+    future: little_script.total_seconds * 1000,
+    total_time_remaining: little_script.total_seconds * 1000,
     startTime: startTime,
     finishTime: endTime,
     delayStarted: 0,
