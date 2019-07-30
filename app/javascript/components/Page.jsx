@@ -1,5 +1,6 @@
 import React, {createRef, useState, useEffect, useReducer} from "react";
 import "./page.scss";
+import {nextSlide, prevSlide, pausePlaythrough, restartPlaythrough} from "../reducers/actions"
 import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';
 import {NavToolbar} from './NavToolbar'
@@ -8,22 +9,22 @@ import {ProgressPanel} from "./ProgressPanel";
 import {ProgressBar} from "./ProgressBar";
 import {PuppetClock} from "./PuppetClock";
 
-export const Page = (props) => {
-    const [showing, setIsShowing] = useState(props.show);
+export const Page = ({id, show}) => {
+    const [showing, setIsShowing] = useState(show);
     const [state, dispatch] = useGlobals();
-    let dynamicName = state.isPlaying ? 'active' : 'paused';
+    let dynamicName = state.nav.isPlaying ? 'active' : 'paused';
 
-    let startClock = <PuppetClock time={state.startTime}/>;
-    let endClock = <PuppetClock time={state.finishTime} />;
-    let progressBar = <ProgressBar isActive={state.isPlaying}
+    let startClock = <PuppetClock time={state.timings.startTime}/>;
+    let endClock = <PuppetClock time={state.timings.finishTime} />;
+    let progressBar = <ProgressBar isActive={state.nav.isPlaying}
                                    maxValue={100}
-                                   progress={state.progress}/>;
+                                   progress={state.nav.progress}/>;
 
     function handleFinish() {
         dispatch({type: 'FINISH'});
         setIsShowing(showing => !showing)
     }
-    if (!props.show || !showing) {
+    if (!show || !showing) {
         return null;
     }
     return (
@@ -33,11 +34,10 @@ export const Page = (props) => {
 
                     <h1 className="script-title">{state.data.title}</h1>
 
-                        // Pass globalCounter as a key so that the whole
-                        // shebang re-renders on reset
+                        {/*Pass globalCounter as a key so that the whole  shebang re-renders on reset*/}
                         <SlideShow key={state.globalCounter}/>
 
-                    <ProgressPanel leftClock={startClock} progressBar={progressBar} rightClock={endClock}/>
+                        <ProgressPanel leftClock={startClock} progressBar={progressBar} rightClock={endClock}/>
                 </main>
 
        </div>
@@ -50,19 +50,19 @@ export const Page = (props) => {
 export const SlideShow = (props) => {
     const [state, dispatch] = useGlobals();
     const maxSlides = state.data.slides.length;
-    let activeSlideIdx = state.activeSlideIdx;
+    let activeSlideIdx = state.nav.activeSlideIdx;
 
     return (
         <div className="slideShow">
             <Controls >
                 <ControlButton color={"purple-accent"}
-                               onClick={()=> dispatch({type:'PREV_SLIDE', idx: activeSlideIdx})}
+                               onClick={()=> dispatch(prevSlide(activeSlideIdx, Date.now()))}
                                disabled={activeSlideIdx===0}>
                     back
                 </ControlButton>
 
                 <ControlButton color={"purple-accent"}
-                               onClick={()=> dispatch({type:'NEXT_SLIDE', idx: activeSlideIdx})}
+                               onClick={()=> dispatch(nextSlide(activeSlideIdx, Date.now()))}
                                disabled={activeSlideIdx===maxSlides - 1}
                                autofocus={!(activeSlideIdx === maxSlides - 1)}>
                     next

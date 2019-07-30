@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // the play-through gets generated on click
     goButtons.forEach(button => button.addEventListener("click", startPlayThrough));
-    
+
     // are we reloading from an ongoing play-through?
     let re = new RegExp('#/*');
     if (re.test(document.location.toString())) {
