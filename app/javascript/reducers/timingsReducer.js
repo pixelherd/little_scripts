@@ -1,19 +1,41 @@
-import {PAUSE, RESUME, NEXT_SLIDE} from "./actions";
+import {PAUSE, RESUME, NEXT_SLIDE, SYNC_CURRENT_TIMER, PREV_SLIDE} from "./actions";
 import {initialTimings} from "../packs/application";
+import {sum} from "lodash/sum"
 
 export default function timingsReducer(state=initialTimings, action) {
+    Object.freeze(state);
+
+    let newState = {...state};
+    let deltaT = (action.timestamp - state.prevProgressTimestamp);
+    let sync_timer = state.current_timer - deltaT;
+    newState.past = state.past + deltaT;
+    newState.prevProgressTimestamp = action.timestamp;
+
     switch (action.type) {
         case PAUSE:
-            return {...state,
-                    past: action.timestamp - state.startTime,
-                    future: (state.finishTime - action.timestamp)};
+            newState.future = (state.finishTime - action.timestamp);
+            return newState;
+
         case RESUME:
-            let newFinishTime = action.timestamp + state.future;
-            return {...state,
-                    past:       action.timestamp - state.startTime,
-                    finishTime: action.timestamp + state.future};
+            newState.finishTime = action.timestamp + state.future;
+            return newState;
+
         case NEXT_SLIDE:
-            return state;
+            newState.past_timers = state.past_timers.concat(sync_timer);
+            newState.current_timer = state.future_timers[0];
+            newState.future_timers = state.future_timers.slice(1);
+            newState.future = sum(state.future_timers);
+            newState.finishTime = action.timestamp + newState.future;
+            return newState;
+
+            case PREV_SLIDE:
+            newState.future_timers = state.future_timers.concat(sync_timer);
+            newState.current_timer = state.past_timers.slice(-1)[0];
+            newState.future = state.future + newState.current_timer + deltaT;
+            newState.past_timers = state.past_timers.slice(0, -1);
+            newState.finishTime = action.timestamp + newState.future;
+            return newState;
+
         default:
             return state
     }

@@ -3,7 +3,7 @@ export const PREV_SLIDE = 'PREV_SLIDE';
 export const PAUSE = 'PAUSE';
 export const RESUME = 'RESUME';
 export const RESTART = 'RESTART';
-export const START_DELAY = 'START DELAY';
+export const SYNC_PROGRESS = 'SYNC_PROGRESS';
 
 export const nextSlide = (idx, timestamp) => {
     return { type: NEXT_SLIDE, idx: idx, timestamp: timestamp }
@@ -23,10 +23,6 @@ export const resumePlaythrough = (timestamp) => {
 
 export const restartPlaythrough = (timestamp) => {
     return {type: RESTART, timestamp: timestamp}
-};
-
-export const startDelay = (timestamp) => {
-    return {type: START_DELAY, timestamp: timestamp}
 };
 
 

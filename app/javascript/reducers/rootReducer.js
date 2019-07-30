@@ -6,6 +6,7 @@ import {initialNav} from "../packs/application";
 import {init} from "../packs/application";
 
 export const rootReducer = ((state=init, action) => {
+    Object.freeze(state);
 
     // global counter effectively serves as a unique ID
     // for the slideshow, so that all timers reset at playthrough restart
@@ -19,7 +20,11 @@ export const rootReducer = ((state=init, action) => {
             globalCounter: historyCounter + 1,
             data: state.data,
             nav: playReducer(initialNav, action),
-            timings: timingsReducer({...initialTimings, startTime: newStartTime, finishTime: newFinishTime}, action),
+            timings: timingsReducer({...initialTimings,
+                                    startTime: newStartTime,
+                                    finishTime: newFinishTime,
+                                    prevProgressTimestamp: newStartTime
+            }, action),
         }
     }
     return {
