@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {useGlobals} from "../hooks";
-import {startDelay} from "../reducers/actions";
 
 const CountdownTimer = ({stepID, time, isActive}) =>  {
     const [state, dispatch] = useGlobals();
@@ -15,7 +14,7 @@ const CountdownTimer = ({stepID, time, isActive}) =>  {
                     () => {
                         setTimeRemaining(timeRemaining => timeRemaining - 1);
                         if (timeRemaining === 0) {
-                            dispatch(startDelay(Date.now()))
+                            dispatch({type: "hello"})
                         }
                     }, 1000);
                 return () => clearTimeout(timer)

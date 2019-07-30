@@ -3,7 +3,6 @@ export const PREV_SLIDE = 'PREV_SLIDE';
 export const PAUSE = 'PAUSE';
 export const RESUME = 'RESUME';
 export const RESTART = 'RESTART';
-export const SYNC_PROGRESS = 'SYNC_PROGRESS';
 
 export const nextSlide = (idx, timestamp) => {
     return { type: NEXT_SLIDE, idx: idx, timestamp: timestamp }

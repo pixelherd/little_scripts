@@ -32,10 +32,10 @@ export const initialTimings = {
     finishTime: endTime,
     delayStarted: 0,
     prevProgressTimestamp: startTime,
+    progress: 1
 };
 export const initialNav = {
     activeSlideIdx: 0,
-    progress: 1,
     isPlaying: true
 };
 export const init = {

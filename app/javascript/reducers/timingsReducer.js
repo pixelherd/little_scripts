@@ -1,11 +1,12 @@
-import {PAUSE, RESUME, NEXT_SLIDE, SYNC_CURRENT_TIMER, PREV_SLIDE} from "./actions";
+import {PAUSE, RESUME, NEXT_SLIDE, PREV_SLIDE} from "./actions";
 import {initialTimings} from "../packs/application";
-import {sum} from "lodash/sum"
+import {sum, merge} from "lodash"
 
 export default function timingsReducer(state=initialTimings, action) {
     Object.freeze(state);
 
     let newState = {...state};
+
     let deltaT = (action.timestamp - state.prevProgressTimestamp);
     let sync_timer = state.current_timer - deltaT;
     newState.past = state.past + deltaT;
@@ -26,6 +27,8 @@ export default function timingsReducer(state=initialTimings, action) {
             newState.future_timers = state.future_timers.slice(1);
             newState.future = sum(state.future_timers);
             newState.finishTime = action.timestamp + newState.future;
+
+            newState.progress = Math.round(sum(state.all_timers.slice(0, newState.past_timers.length)) / sum(state.all_timers) * 100);
             return newState;
 
             case PREV_SLIDE:
@@ -34,6 +37,7 @@ export default function timingsReducer(state=initialTimings, action) {
             newState.future = state.future + newState.current_timer + deltaT;
             newState.past_timers = state.past_timers.slice(0, -1);
             newState.finishTime = action.timestamp + newState.future;
+                newState.progress = Math.round(sum(state.all_timers.slice(0, newState.past_timers.length)) / sum(state.all_timers) * 100);
             return newState;
 
         default:

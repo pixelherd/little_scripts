@@ -18,7 +18,7 @@ export const Page = ({id, show}) => {
     let endClock = <PuppetClock time={state.timings.finishTime} />;
     let progressBar = <ProgressBar isActive={state.nav.isPlaying}
                                    maxValue={100}
-                                   progress={state.nav.progress}/>;
+                                   progress={state.timings.progress}/>;
 
     function handleFinish() {
         dispatch({type: 'FINISH'});

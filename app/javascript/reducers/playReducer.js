@@ -9,7 +9,9 @@ export default function playReducer(state=initialNav, action) {
         case RESUME:
             return {...state, isPlaying: true};
         case NEXT_SLIDE:
-            return {...state, activeSlideIdx: action.idx + 1};
+            return {...state,
+                    activeSlideIdx: action.idx + 1
+            };
         case PREV_SLIDE:
             return {...state, activeSlideIdx: action.idx - 1};
         default:
