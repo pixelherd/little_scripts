@@ -26,4 +26,34 @@
     --accent-purple-transparent: rgba(51, 27, 100, 0.75);
     --blue-green-gradient: linear-gradient(90deg, #08AEEA, #2AF598);
     --orange-pink-gradient: linear-gradient(0deg, #F6B83C, #EA4E6C);
+    --blue-white-gradient: linear-gradient(90deg, #08AEEA, #ffffff);
+}
+body {
+    background-color: var(--secondary-green);
+    font-family: var(--font-text);
+}
+
+h1 {
+    font-family: var(--font-display);
+}
+.header-links {
+    float: right;
+}
+a {
+    padding: 0.5rem;
+    background-color: var(--secondary-blue);
+    background-image: var(--blue-white-gradient);
+    color: black;
+    text-decoration: none;
+}
+
+.go-button {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--secondary-blue);
+    background-image: var(--blue-white-gradient);
+    text-transform: uppercase;
+    font-size: large;
+    border: 2px solid black;
+    border-radius: 10px;
 }
