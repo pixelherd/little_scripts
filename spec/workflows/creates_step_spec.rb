@@ -12,7 +12,7 @@ RSpec.describe "CreatesStep" do
       expect(new_step.duration).to eq(300)
     end
 
-    it "attaches Script to a valid LittleScript" do
+    it "attaches Step to a valid LittleScript" do
       valid_script = FactoryBot.build_stubbed(:little_script_with_steps)
       creator = CreatesStep.new(valid_script, name: "Hoover the dog", duration_hours: 0, duration_minutes: 5)
       new_step = creator.make_step

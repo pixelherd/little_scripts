@@ -66,7 +66,7 @@ class LittleScriptsController < ApplicationController
   def destroy
     @little_script.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Little script was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Little script was successfully deleted.' }
       format.json { head :no_content }
     end
   end

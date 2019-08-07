@@ -15,5 +15,5 @@
   <summary class="cheeky_heading">ADD STEPS</summary>
 <%= render 'steps/form', little_script_id: @little_script.id %>
 </details>
-<button id="modal-button" onclick="document.querySelector('#modal').style.display=`flex`"> open modal </button>
-<div id="modal" style="display: none"> <%= react_component('Hello', {name: "you"})%> </div>
+<%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
+              method: :delete, data: { confirm: "Are you sure?" } %>
