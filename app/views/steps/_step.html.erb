@@ -1,5 +1,6 @@
 <tr>
   <li style="display: flex; justify-content: space-evenly; border-bottom: solid pink 1px">
+    <span class="delete-button"> <%= button_to '🗑', step_path(step[:id]), method: 'delete', data: { confirm: 'Are you sure?' } %> </span>
     <span style="width: 70%"><%= step.name %> </span>
     <span style="width: 30%"> <%= (step.duration/60/60) %> hr <%= step.duration/60%60%>min</span>
   </li>

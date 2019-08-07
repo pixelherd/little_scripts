@@ -1,7 +1,10 @@
+<%= javascript_pack_tag 'standalone_clock' %>
 <h1><strong><%= @little_script.name %></strong></h1>
-<h2>Could be finished by <%= react_component('Clock',
-                                             {date: (Time.now + @little_script.steps.map(&:duration).sum)},
-                                             tag: :span, class: 'my-clock')%> </h2>
+<h2>Could be finished by <span id="react-clock"> </span> </h2>
+<%= content_tag :span,
+                id: "clock-node",
+                data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
+<% end  %>
 <button class="go-button"> start play-through </button>
 <%= content_tag :section,
                 class: "rNode",
@@ -15,5 +18,7 @@
   <summary class="cheeky_heading">ADD STEPS</summary>
 <%= render 'steps/form', little_script_id: @little_script.id %>
 </details>
-<%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
+<span class="delete-script-button">
+  <%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
               method: :delete, data: { confirm: "Are you sure?" } %>
+</span>

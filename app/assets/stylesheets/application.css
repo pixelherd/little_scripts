@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+:root {--font-serif:  Georgia, serif;
+    --font-display: Futura, sans-serif;
+    --font-text: Literata, serif;
+    --font-dark: #1C1A1C;
+    --cool-pale-grey: #f1f1f1;
+    --primary-pink: #EA4E6C;
+    --primary-orange: #F6B83C;
+    --secondary-blue: #08AEEA;
+    --secondary-green: #2AF598;
+    --accent-purple: #341B66;
+    --accent-purple-transparent: rgba(51, 27, 100, 0.75);
+    --blue-green-gradient: linear-gradient(90deg, #08AEEA, #2AF598);
+    --orange-pink-gradient: linear-gradient(0deg, #F6B83C, #EA4E6C);
+}

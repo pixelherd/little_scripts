@@ -2,3 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here:
 
+
+.delete-script-button > .button_to > * {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--primary-pink);
+}
