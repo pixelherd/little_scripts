@@ -9,7 +9,7 @@ import {ProgressPanel} from "./ProgressPanel";
 import {ProgressBar} from "./ProgressBar";
 import {PuppetClock} from "./PuppetClock";
 
-export const Page = ({id, show}) => {
+export const Page = ({id, show, init}) => {
     const [showing, setIsShowing] = useState(show);
     const [state, dispatch] = useGlobals();
     let dynamicName = state.nav.isPlaying ? 'active' : 'paused';
@@ -19,7 +19,6 @@ export const Page = ({id, show}) => {
     let progressBar = <ProgressBar isActive={state.nav.isPlaying}
                                    maxValue={100}
                                    progress={state.timings.progress}/>;
-
     function handleFinish() {
         dispatch({type: 'FINISH'});
         setIsShowing(showing => !showing)
@@ -29,7 +28,7 @@ export const Page = ({id, show}) => {
     }
     return (
        <div className="playThroughScreen" id={`play-through-screen-${dynamicName}`}>
-            <NavToolbar />
+            <NavToolbar initialState={init} />
                 <main className="script">
 
                     <h1 className="script-title">{state.data.title}</h1>

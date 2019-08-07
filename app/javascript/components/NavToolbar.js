@@ -5,23 +5,18 @@ import {ModalResumeButton} from "./ModalResumeButton";
 import {useGlobals} from "../hooks";
 import {pausePlaythrough, restartPlaythrough} from "../reducers/actions";
 
-export const NavToolbar = (props) => {
+export const NavToolbar = ({initialState}) => {
     const [state, dispatch] = useGlobals();
     const handleClose = (e) => {
         e.preventDefault();
         window.history.go(-1)
     };
 
-    function handleRestart(){
-        let timestamp = Date.now();
-        return dispatch(restartPlaythrough(timestamp))
-    }
-
 
     return (
         <nav className="app-nav">
                <ControlButton className="app-button"
-                              onClick={handleRestart}
+                              onClick={() => {dispatch(restartPlaythrough(Date.now(), initialState))}}
                               icon={"⏮"}
                               label={"restart"}/>
                 <ControlButton className="app-button"

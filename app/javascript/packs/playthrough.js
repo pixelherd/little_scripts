@@ -1,8 +1,9 @@
-import React from "react";
-import {Provider} from "react-redux";
-import ReactDOM from "react-dom";
-import Page from '../components/Page';
+import React from 'react';
 import {configureStore} from "../store";
+import { render } from 'react-dom'
+import {Provider} from "../hooks";
+import {Page} from '../components/Page'
+import {rootReducer} from '../reducers/rootReducer'
 
 window.onpopstate = (e) => {
     let re = new RegExp('#/*');
@@ -14,11 +15,50 @@ window.onpopstate = (e) => {
 };
 
 function startPlayThrough(e){
-    const scriptID = e.target.id;
 
+
+    const scriptID = e.target.id;
     let little_script = getScriptFromStore(scriptID);
 
     // TODO figure out how to yield to server-side if we can't get the script
+    // TODO add error
+
+    // Once the desired LittleScript has been retrieved, make the
+    // shape of state nice for timings reducer
+
+    let startTime = Date.now();
+    let endTime = startTime + little_script.total_seconds * 1000;
+    let timers = [];
+    little_script.steps.forEach(step => timers.push(step.duration * 1000) );
+    const initialTimings = {
+        total_seconds: little_script.total_seconds,
+        all_timers: timers,
+        past: 0,
+        future: little_script.total_seconds * 1000,
+        past_timers: [],
+        current_timer: timers[0],
+        future_timers: timers.slice(1),
+        startTime: startTime,
+        finishTime: endTime,
+        delayStarted: 0,
+        prevProgressTimestamp: startTime,
+        progress: 1
+    };
+    const initialNav = {
+        activeSlideIdx: 0,
+        isPlaying: true
+    };
+    const init = {
+        globalCounter: 0,
+        data: {
+            title: little_script.title,
+            slides: little_script.steps,
+        },
+        timings: initialTimings,
+        nav: initialNav
+    };
+
+
 
     // set up browser history
     let currentPage = document.location.pathname + "#/" + scriptID; // eg "/"
@@ -26,9 +66,13 @@ function startPlayThrough(e){
     document.title = "Play-Thorough";
     history.pushState(currentPage, document.title, currentPage);
 
+    // Render a new playthrough
+
     // TODO refactor to mount 'body' rather than 'root'? No use in having the header of host page hanging around
-    ReactDOM.render(
-        <Page id={scriptID} little_script={little_script}/>,
+    render(
+        <Provider initialState={init} reducer={rootReducer}>
+            <Page id={scriptID} show={true} initialState={init}/>
+        </Provider>,
         document.getElementById('root'),
     )
 }
@@ -61,7 +105,7 @@ const continuePlayThrough = () => {
     let currentPage = document.location.toString().slice(-1);
     let script = getScriptFromStore(currentPage);
     console.log(currentPage);
-    ReactDOM.render(
+    render(
         <Page id={currentPage} little_script={script}/>,
         document.getElementById('root'),
     )

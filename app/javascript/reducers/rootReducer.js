@@ -1,11 +1,10 @@
 import playReducer from "./playReducer";
 import {RESTART} from "./actions";
 import timingsReducer from "./timingsReducer";
-import {initialTimings} from "../packs/application"
-import {initialNav} from "../packs/application";
-import {init} from "../packs/application";
+// import {initialTimings} from "../packs/application"
+// import {initialNav} from "../packs/application";
 
-export const rootReducer = ((state=init, action) => {
+export const rootReducer = ((state={}, action) => {
     Object.freeze(state);
 
     // global counter effectively serves as a unique ID
@@ -14,13 +13,14 @@ export const rootReducer = ((state=init, action) => {
     let historyCounter = state.globalCounter;
 
     if (action.type === RESTART) {
+        const initialState = action.initialState;
         const newStartTime = action.timestamp;
         const newFinishTime = newStartTime + state.timings.total_seconds * 1000;
         return {
             globalCounter: historyCounter + 1,
             data: state.data,
-            nav: playReducer(initialNav, action),
-            timings: timingsReducer({...initialTimings,
+            nav: playReducer(initialState.nav, action),
+            timings: timingsReducer({...initialState.timings,
                                     startTime: newStartTime,
                                     finishTime: newFinishTime,
                                     prevProgressTimestamp: newStartTime

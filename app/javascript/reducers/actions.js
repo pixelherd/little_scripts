@@ -20,8 +20,8 @@ export const resumePlaythrough = (timestamp) => {
     return {type: RESUME, timestamp: timestamp}
 };
 
-export const restartPlaythrough = (timestamp) => {
-    return {type: RESTART, timestamp: timestamp}
+export const restartPlaythrough = (timestamp, init) => {
+    return {type: RESTART, timestamp: timestamp, initialState: init}
 };
 
 
