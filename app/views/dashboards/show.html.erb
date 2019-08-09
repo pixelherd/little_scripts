@@ -1,21 +1,22 @@
-<article>
-<b>Your scripts:</b>
+<main class="dashboard-home">
+<% if !@dashboard.empty? %>
+<h1>Your scripts</h1>
+  <ul id="script_list">
+    <% @dashboard.each do |script| %>
+      <li class="script-list-item" >
+        <span class="delete-button"> <%= button_to '🗑', little_script_path(script[:id]), method: 'delete', remote: true, data: { confirm: 'Are you sure?' } %> </span>
+        <span> <%= link_to script[:name], little_script_path(script[:id]) %> </span>
+        <span class="playthough-duration"><time> <%= script[:duration_hours]%>h <%= script[:duration_minutes] %>m </time> </span>
+        <span> <button class="go-button" id="<%= script[:id] %>"> START </button> </span>
+        <%= content_tag :section,
+            class: "rNode",
+            id: script[:id].to_s,
+            data: script.to_json do %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 
-<ul id="script_list">
-  <% @dashboard.each do |script| %>
-    <li class="script-list-item" >
-      <span class="delete-button"> <%= button_to '🗑', little_script_path(script[:id]), method: 'delete', remote: true, data: { confirm: 'Are you sure?' } %> </span>
-      <span> <%= link_to script[:name], little_script_path(script[:id]) %> </span>
-      <span> <%= script[:duration_hours]%> hrs <%= script[:duration_minutes] %> mins </span>
-      <span> <button class="go-button" id="<%= script[:id] %>"> START PLAY-THROUGH </button> </span>
-      <%= content_tag :section,
-          class: "rNode",
-          id: script[:id].to_s,
-          data: script.to_json do %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-</article>
+  </main>
+<% end %>
 <%= render 'little_scripts/form' %>

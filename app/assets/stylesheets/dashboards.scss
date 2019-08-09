@@ -1,13 +1,136 @@
-li {
-  list-style: none;
+body {
   display: flex;
-  justify-content: space-evenly;
-}
-li > * {
-  display: inline;
-  margin: 1.2rem;
-}
+  justify-content: center;
+  margin: auto;
 
-.button_to {
-  display: inherit;
+  header, main, footer {
+    max-width: 499px;
+  }
+
+  h1, h2 {
+    font-family: var(--font-serif);
+    text-align: center;
+  }
+
+  * {
+    outline-color: var(--secondary-blue);
+  }
+
+  header {
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .dashboard-home {
+
+    a {
+      color: black;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      display: grid;
+      grid-template-columns: 40px auto 60px 50px;
+      padding: 0.5rem 0;
+
+      span, .go-button {
+        padding: 0.25rem;
+      }
+      .playthough-duration {
+        font-size: small;
+      }
+    }
+    .go-button {
+      background-color: var(--secondary-blue);
+      background-image: var(--blue-white-gradient);
+      //text-transform: uppercase;
+      //  font-size: large;
+      border: 2px solid black;
+      border-radius: 7px;
+      }
+  }
+
+  #newScriptForm {
+    box-sizing: border-box;
+    background-color: var(--primary-orange);
+    background-image: var(--orange-pink-gradient);
+    font-family: var(--font-text);
+    padding: 40px;
+    width: 100%;
+
+    input {
+      padding: 10px;
+      width: 100%;
+      font-size: 17px;
+      font-family: Georgia, serif;
+      border: 1px solid #aaaaaa;
+    }
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+      background-color: var(--primary-pink);
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+      display: none;
+    }
+
+    button {
+      background-color: var(--secondary-blue);
+      background-image: var(--blue-white-gradient);
+      text-transform: uppercase;
+      font-size: large;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-family: var(--font-serif);
+      cursor: pointer;
+    }
+
+    button:hover, button:focus {
+      opacity: 0.8;
+      outline: var(--accent-purple) 3px solid;;
+    }
+
+    #prevBtn {
+      background-color: #bbbbbb;
+    }
+
+    /* Stepper circles at the bottom of the form,
+     TODO: replace with text 1/2 or something, as the circles look clickable when they aren't
+     */
+    .formStep {
+      height: 10px;
+      width: 10px;
+      margin: 0 2px;
+      border: 1px var(--accent-purple) solid;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+    }
+
+    .formStep.active {
+      opacity: 1;
+      background-color: var(--accent-purple);
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .formStep.finish {
+      background-color: var(--secondary-green);
+    }
+
+  }
+}
+@media screen and (max-width: 499px) {
+
+  header, main, footer {
+    max-width: 320px;
+  }
 }

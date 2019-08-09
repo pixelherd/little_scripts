@@ -1,25 +1,37 @@
-<%= link_to "🏠 HOME", root_path %>
-<%= javascript_pack_tag 'standalone_clock' %>
-<h1><strong><%= @little_script.name %></strong></h1>
-<h2>Could be finished by <span id="react-clock"> </span> </h2>
-<%= content_tag :span,
-                id: "clock-node",
-                data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
-<% end  %>
-<button class="go-button"> start play-through </button>
-<%= content_tag :section,
-                class: "rNode",
-                id: @little_script[:id].to_s,
-                data: (@little_script.to_hash).to_json do %>
-  <% end %>
-<ul style="width: 300px; padding-left: 0">
-  <%= render(@little_script.steps) %>
-</ul>
-<details title="Add steps" open>
-  <summary class="cheeky_heading">ADD STEPS</summary>
-<%= render 'steps/form', little_script_id: @little_script.id %>
-</details>
-<span class="delete-script-button">
-  <%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
-              method: :delete, data: { confirm: "Are you sure?" } %>
-</span>
+<header>
+  <nav>
+  <%= link_to "🏠 HOME", root_path %>
+  <%= javascript_pack_tag 'standalone_clock' %>
+  </nav>
+</header>
+<main class="show-script-main">
+  <header>
+    <h1><%= @little_script.name.titleize %></h1>
+    <h2>Could be finished by <span id="react-clock"> </span> </h2>
+    <%= content_tag :span,
+                    id: "clock-node",
+                    data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
+    <% end  %>
+    <button class="go-button"> start play-through </button>
+    <%= content_tag :section,
+                    class: "rNode",
+                    id: @little_script[:id].to_s,
+                    data: (@little_script.to_hash).to_json do %>
+      <% end %>
+  </header>
+  <ul class="step-list">
+    <%= render(@little_script.steps) %>
+  </ul>
+</main>
+
+<footer>
+  <details title="Add steps">
+    <summary class="cheeky_heading">ADD STEPS</summary>
+    <%= render 'steps/form', little_script_id: @little_script.id %>
+  </details>
+
+  <span class="delete-script-button">
+    <%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
+                method: :delete, data: { confirm: "Are you sure?" } %>
+  </span>
+</footer>
