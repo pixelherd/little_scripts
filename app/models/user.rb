@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules
-  devise :database_authenticatable, :rememberable
+  devise :database_authenticatable, :rememberable, :registerable
 
   has_many :little_scripts, dependent: :destroy
   has_many :steps, :through => :little_scripts, :source => :steps

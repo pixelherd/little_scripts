@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_06_27_221816) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "little_scripts", force: :cascade do |t|
     t.string "name", default: " ", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_little_scripts_on_user_id"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_221816) do
   create_table "steps", force: :cascade do |t|
     t.string "name", default: " ", null: false
     t.integer "duration", default: 60
-    t.integer "little_script_id"
+    t.bigint "little_script_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["little_script_id"], name: "index_steps_on_little_script_id"
@@ -43,4 +46,6 @@ ActiveRecord::Schema.define(version: 2019_06_27_221816) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "little_scripts", "users"
+  add_foreign_key "steps", "little_scripts"
 end

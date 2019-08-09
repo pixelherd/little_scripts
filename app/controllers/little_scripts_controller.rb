@@ -1,9 +1,7 @@
 class LittleScriptsController < ApplicationController
   before_action :set_little_script, only: [:show, :edit, :update, :destroy]
 
-  # TODO: fake user to be replaced with current_user after auth works.
   # TODO: implement "guest user"
-  FAKE_USER_ID = 2
 
   # GET /users/1/little_scripts
   # GET /users/1/little_scripts.json
@@ -32,8 +30,8 @@ class LittleScriptsController < ApplicationController
   # POST /little_scripts
   # POST /little_scripts.json
   def create
-    fake_user = User.find_by(:id => FAKE_USER_ID)
-    @little_script = CreatesLittleScript.new(fake_user, little_script_params)&.make_script
+    user = User.find_by(:id => current_user.id)
+    @little_script = CreatesLittleScript.new(user, little_script_params)&.make_script
     @step = CreatesStep.new(@little_script, step_params)&.make_step
 
     respond_to do |format|

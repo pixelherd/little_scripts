@@ -1,6 +1,7 @@
 {
   "name": "little_scripts",
   "author": "pixelherd",
+  "license": "MIT",
   "version": "0.1.0",
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
