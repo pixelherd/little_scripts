@@ -1,0 +1,36 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+h1 {
+  padding-bottom: 1rem;
+}
+form {
+  min-width: 250px;
+
+  .field, .actions {
+    margin: 1rem;
+  }
+  input {
+
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: white;
+    padding: 0.5rem;
+  }
+  .field {
+    input {
+      width: 100%;
+    }
+    #user_remember_me {
+      width: unset;
+    }
+  }
+  .actions {
+    input {
+      width: 50%;
+    }
+  }
+}
