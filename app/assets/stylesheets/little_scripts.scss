@@ -15,21 +15,14 @@ body {
     line-height: 1.2;
     font-family: var(--font-serif);
   }
-  h1 {
-    font-size: larger;
-  }
-  h2 {
-    font-size: large;
-
-    #react-clock {
-      font-family: var(--font-display);
-      font-size: x-large;
-    }
-  }
 
   header {
-    width: fit-content;
 
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
     a {
       color: black;
       padding: 0 0.23rem;
@@ -43,6 +36,33 @@ body {
   }
 
   .show-script-main {
+
+    .meta {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        font-size: larger;
+        padding: 0;
+      }
+      h2 {
+        font-size: large;
+
+        #react-clock {
+          font-family: var(--font-display);
+          font-size: x-large;
+        }
+      }
+      .go-button {
+        background-color: var(--secondary-blue);
+        background-image: var(--blue-white-gradient);
+        text-transform: uppercase;
+        font-size: large;
+        border: 2px solid black;
+        border-radius: 7px;
+      }
+    }
 
     ul {
       padding: 0;
@@ -74,14 +94,6 @@ body {
 
     }
 
-    .go-button {
-      background-color: var(--secondary-blue);
-      background-image: var(--blue-white-gradient);
-      text-transform: uppercase;
-      font-size: large;
-      border: 2px solid black;
-      border-radius: 7px;
-    }
   }
 
   footer {
@@ -129,16 +141,16 @@ body {
   }
 }
 
-@media screen and (min-width: 499px) {
-
-  .show-script-main {
-    max-width: 499px;
+@media screen and (min-width: 500px) {
+  #root {
+    width: 450px;
   }
+
 }
 
 @media screen and (max-width: 499px) {
 
-  .show-script-main {
+  .show-script-main, footer, details > form {
     max-width: 320px;
   }
 }

@@ -5,7 +5,7 @@
   </nav>
 </header>
 <main class="show-script-main">
-  <header>
+  <section class="meta">
     <h1><%= @little_script.name.titleize %></h1>
     <h2>Could be finished by <span id="react-clock"> </span> </h2>
     <%= content_tag :span,
@@ -18,7 +18,7 @@
                     id: @little_script[:id].to_s,
                     data: (@little_script.to_hash).to_json do %>
       <% end %>
-  </header>
+  </section>
   <ul class="step-list">
     <%= render(@little_script.steps) %>
   </ul>

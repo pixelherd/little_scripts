@@ -8,6 +8,7 @@ import {rootReducer} from '../reducers/rootReducer'
 window.onpopstate = (e) => {
     let re = new RegExp('#/*');
     if (re.test(document.location.toString())) {
+        window.history.go(-1)
         continuePlayThrough();
     } else {
         document.location.reload()
@@ -62,7 +63,7 @@ function startPlayThrough(e){
 
     // set up browser history
     let currentPage = document.location.pathname + "#/" + scriptID; // eg "/"
-    console.log(currentPage);
+
     document.title = "Play-Thorough";
     history.pushState(currentPage, document.title, currentPage);
 
@@ -92,9 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
     goButtons.forEach(button => button.addEventListener("click", startPlayThrough));
 
     // are we reloading from an ongoing play-through?
+    // TODO continuePlayThrough is broken; let's go back home
     let re = new RegExp('#/*');
     if (re.test(document.location.toString())) {
-        continuePlayThrough();
+        window.history.go(-1);
+
     } else {
     }
 });
@@ -106,7 +109,7 @@ const continuePlayThrough = () => {
     let script = getScriptFromStore(currentPage);
     console.log(currentPage);
     render(
-        <Page id={currentPage} little_script={script}/>,
+        <Page id={script.id} show={true} initialState={init}/>,
         document.getElementById('root'),
     )
 };

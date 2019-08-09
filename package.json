@@ -1,6 +1,7 @@
 {
   "name": "little_scripts",
-  "private": true,
+  "author": "pixelherd",
+  "version": "0.1.0",
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
@@ -12,8 +13,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
-    "redux": "^4.0.1",
-    "webpacker-react": "^0.3.2"
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.7.2"
