@@ -31,6 +31,7 @@ function startPlayThrough(e){
     let endTime = startTime + little_script.total_seconds * 1000;
     let timers = [];
     little_script.steps.forEach(step => timers.push(step.duration * 1000) );
+    window.little_script = little_script
     const initialTimings = {
         total_seconds: little_script.total_seconds,
         all_timers: timers,
@@ -62,8 +63,9 @@ function startPlayThrough(e){
 
 
     // set up browser history
-    let currentPage = document.location.pathname + "#/" + scriptID; // eg "/"
-
+    let suffix = document.location.pathname.slice(-1) === "/" ? "#/" : "/#/"
+    let currentPage = document.location.pathname + suffix + scriptID; // eg "/"
+    window.scriptID = scriptID;
     document.title = "Play-Thorough";
     history.pushState(currentPage, document.title, currentPage);
 

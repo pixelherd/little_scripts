@@ -1,29 +1,29 @@
 {
-  "application.js": "/packs/application-c9096b02bf9f9e41d40a.js",
-  "application.js.map": "/packs/application-c9096b02bf9f9e41d40a.js.map",
+  "application.js": "/packs/application-40ddd5a47be0025aa921.js",
+  "application.js.map": "/packs/application-40ddd5a47be0025aa921.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/application-c9096b02bf9f9e41d40a.js"
+        "/packs/application-40ddd5a47be0025aa921.js"
       ],
       "js.map": [
-        "/packs/application-c9096b02bf9f9e41d40a.js.map"
+        "/packs/application-40ddd5a47be0025aa921.js.map"
       ]
     },
     "hello_react": {
       "js": [
-        "/packs/hello_react-c9096b02bf9f9e41d40a.js"
+        "/packs/hello_react-40ddd5a47be0025aa921.js"
       ],
       "js.map": [
-        "/packs/hello_react-c9096b02bf9f9e41d40a.js.map"
+        "/packs/hello_react-40ddd5a47be0025aa921.js.map"
       ]
     },
     "localstorage": {
       "js": [
-        "/packs/localstorage-c9096b02bf9f9e41d40a.js"
+        "/packs/localstorage-40ddd5a47be0025aa921.js"
       ],
       "js.map": [
-        "/packs/localstorage-c9096b02bf9f9e41d40a.js.map"
+        "/packs/localstorage-40ddd5a47be0025aa921.js.map"
       ]
     },
     "playthrough": {
@@ -31,32 +31,32 @@
         "/packs/css/playthrough-a47cd7f3.css"
       ],
       "js": [
-        "/packs/playthrough-c9096b02bf9f9e41d40a.js"
+        "/packs/playthrough-40ddd5a47be0025aa921.js"
       ],
       "css.map": [
         "/packs/css/playthrough-a47cd7f3.css.map"
       ],
       "js.map": [
-        "/packs/playthrough-c9096b02bf9f9e41d40a.js.map"
+        "/packs/playthrough-40ddd5a47be0025aa921.js.map"
       ]
     },
     "standalone_clock": {
       "js": [
-        "/packs/standalone_clock-c9096b02bf9f9e41d40a.js"
+        "/packs/standalone_clock-40ddd5a47be0025aa921.js"
       ],
       "js.map": [
-        "/packs/standalone_clock-c9096b02bf9f9e41d40a.js.map"
+        "/packs/standalone_clock-40ddd5a47be0025aa921.js.map"
       ]
     }
   },
-  "hello_react.js": "/packs/hello_react-c9096b02bf9f9e41d40a.js",
-  "hello_react.js.map": "/packs/hello_react-c9096b02bf9f9e41d40a.js.map",
-  "localstorage.js": "/packs/localstorage-c9096b02bf9f9e41d40a.js",
-  "localstorage.js.map": "/packs/localstorage-c9096b02bf9f9e41d40a.js.map",
+  "hello_react.js": "/packs/hello_react-40ddd5a47be0025aa921.js",
+  "hello_react.js.map": "/packs/hello_react-40ddd5a47be0025aa921.js.map",
+  "localstorage.js": "/packs/localstorage-40ddd5a47be0025aa921.js",
+  "localstorage.js.map": "/packs/localstorage-40ddd5a47be0025aa921.js.map",
   "playthrough.css": "/packs/css/playthrough-a47cd7f3.css",
   "playthrough.css.map": "/packs/css/playthrough-a47cd7f3.css.map",
-  "playthrough.js": "/packs/playthrough-c9096b02bf9f9e41d40a.js",
-  "playthrough.js.map": "/packs/playthrough-c9096b02bf9f9e41d40a.js.map",
-  "standalone_clock.js": "/packs/standalone_clock-c9096b02bf9f9e41d40a.js",
-  "standalone_clock.js.map": "/packs/standalone_clock-c9096b02bf9f9e41d40a.js.map"
+  "playthrough.js": "/packs/playthrough-40ddd5a47be0025aa921.js",
+  "playthrough.js.map": "/packs/playthrough-40ddd5a47be0025aa921.js.map",
+  "standalone_clock.js": "/packs/standalone_clock-40ddd5a47be0025aa921.js",
+  "standalone_clock.js.map": "/packs/standalone_clock-40ddd5a47be0025aa921.js.map"
 }

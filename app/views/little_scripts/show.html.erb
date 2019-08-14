@@ -12,7 +12,7 @@
                     id: "clock-node",
                     data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
     <% end  %>
-    <button class="go-button"> start play-through </button>
+    <button class="go-button" id="<%= @little_script[:id] %>"> start play-through </button>
     <%= content_tag :section,
                     class: "rNode",
                     id: @little_script[:id].to_s,
