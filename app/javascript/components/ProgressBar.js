@@ -1,5 +1,5 @@
 import React from 'react';
-import './page.scss';
+import '../../assets/stylesheets/page.scss';
 
 export const ProgressBar = ({isActive, maxValue, progress}) => {
     let barStatus;

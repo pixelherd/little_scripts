@@ -1,5 +1,5 @@
 import React, {createRef, useState, useEffect, useReducer} from "react";
-import "./page.scss";
+import "../../assets/stylesheets/page.scss";
 import {nextSlide, prevSlide, pausePlaythrough, restartPlaythrough} from "../reducers/actions"
 import {Slides, StepCard} from './StepCard';
 import {Controls, ControlButton} from './ControlButton';

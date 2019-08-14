@@ -1,5 +1,5 @@
 import React from "react";
-import "./control-button.scss";
+import "../../assets/stylesheets/control-button.scss";
 
 export const Controls = (props) => {
     return <div className="controls">{props.children}</div>

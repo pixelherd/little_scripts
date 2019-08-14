@@ -1,5 +1,5 @@
 import React from "react";
-import "./app_nav.scss";
+import "../../assets/stylesheets/app_nav.scss";
 import {ControlButton, Controls} from './ControlButton';
 import {ModalResumeButton} from "./ModalResumeButton";
 import {useGlobals} from "../hooks";

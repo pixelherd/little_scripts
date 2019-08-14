@@ -1,7 +1,7 @@
 import React from "react";
 import StepName from './StepName';
 import CountdownTimer from "./CountdownTimer";
-import "./card.scss";
+import "../../assets/stylesheets/card.scss";
 import {useGlobals} from "../hooks";
 
 
