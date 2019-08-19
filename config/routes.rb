@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resource :dashboards, only: [:show]
   resources :pages, only: [:show, :guest]
 
-  resources :little_scripts, only: [:create, :show, :edit, :update, :destroy] do
+  resources :little_scripts, only: [:create, :show, :update, :destroy] do
     get 'search', on: :collection
 
     resources :steps, only: [:index, :new ]

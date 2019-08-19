@@ -1,5 +1,5 @@
 class LittleScriptsController < ApplicationController
-  before_action :set_little_script, only: [:show, :edit, :update, :destroy]
+  before_action :set_little_script, only: [:show, :update, :destroy]
 
   # TODO: implement "guest user"
 
@@ -23,9 +23,6 @@ class LittleScriptsController < ApplicationController
     @little_script = LittleScript.new
   end
 
-  # GET /little_scripts/1/edit
-  def edit
-  end
 
   # POST /little_scripts
   # POST /little_scripts.json
@@ -53,7 +50,7 @@ class LittleScriptsController < ApplicationController
         format.html { redirect_to @little_script, notice: 'Little script was successfully updated.' }
         format.json { render :show, status: :ok, location: @little_script }
       else
-        format.html { render :edit }
+        format.html { render @little_script }
         format.json { render json: @little_script.errors, status: :unprocessable_entity }
       end
     end

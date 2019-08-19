@@ -6,14 +6,48 @@
 </header>
 <main class="show-script-main">
   <% l = @little_script.to_hash %>
+
   <section class="meta">
-    <h1><%= @little_script.name %></h1>
+
+<!--   page title, including edit form that appears on click  -->
+
+    <h1 class="page-title" onclick="handleTitleClick()"><%= @little_script.name %></h1>
+    <span class="tooltiptext">click to edit title</span>
+    <%= form_for @little_script, url: {action: "update"}, method: "patch", html: { class: "edit-form", hidden: true } do |f| %>
+      <%= f.text_field :name, id: :editfield %>
+      <%= f.submit "Edit" %>
+      <input type="button" onclick="handleCancel()" value="Cancel">
+    <% end %>
+    <script type="application/javascript">
+        let pageTitle = document.querySelector('.page-title')
+        let editForm = document.querySelector('.edit-form')
+        let editfield = document.querySelector('#editfield')
+
+        let handleCancel = () => {
+            pageTitle.hidden = false;
+            editForm.hidden = true;
+            editfield.autofocus = false;
+        }
+        let handleTitleClick = () => {
+            editForm.hidden = false;
+            editfield.autofocus = true;
+            pageTitle.hidden = true;
+        }
+    </script>
+
+<!--    approximate finish time, renders an updating React clock -->
+
     <h2>Could be finished by <span id="react-clock"> </span> </h2>
-    <p class="playthough-duration">(total duration: <time> <%= l[:duration_hours]%>h <%= l[:duration_minutes] %>m </time> )</p>
     <%= content_tag :span,
                     id: "clock-node",
                     data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
     <% end  %>
+
+<!--    playthrough duration -->
+
+    <p class="playthough-duration">(total duration: <time> <%= l[:duration_hours]%>h <%= l[:duration_minutes] %>m </time> )</p>
+
+<!--    "START PLAYTHROUGH" button -->
 
     <button class="go-button" id="<%= @little_script[:id] %>"> start play-through </button>
     <%= content_tag :section,
@@ -22,16 +56,23 @@
                     data: l.to_json do %>
       <% end %>
   </section>
+
+<!--  list of steps (renders collection steps/_step )  -->
+
   <ul class="step-list">
     <%= render(@little_script.steps) %>
   </ul>
 </main>
+
+<!--  "ADD STEP" form (renders steps/_form )  -->
 
 <footer>
   <details title="Add steps">
     <summary class="cheeky_heading">ADD STEPS</summary>
     <%= render 'steps/form', little_script_id: @little_script.id %>
   </details>
+
+<!--  "DELETE LITTLE SCRIPT" button  -->
 
   <span class="delete-script-button">
     <%= button_to "Delete Little Script", { action: "destroy", id: @little_script.id },
