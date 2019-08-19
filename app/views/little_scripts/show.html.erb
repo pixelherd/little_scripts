@@ -7,7 +7,7 @@
 <main class="show-script-main">
   <% l = @little_script.to_hash %>
   <section class="meta">
-    <h1><%= @little_script.name.titleize %></h1>
+    <h1><%= @little_script.name %></h1>
     <h2>Could be finished by <span id="react-clock"> </span> </h2>
     <p class="playthough-duration">(total duration: <time> <%= l[:duration_hours]%>h <%= l[:duration_minutes] %>m </time> )</p>
     <%= content_tag :span,
