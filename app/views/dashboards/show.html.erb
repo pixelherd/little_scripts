@@ -1,10 +1,10 @@
 <main class="dashboard-home">
-<% if !@dashboard.empty? %>
+<% unless @dashboard.empty? %>
 <h1>Your scripts</h1>
   <ul id="script_list">
     <% @dashboard.each do |script| %>
       <li class="script-list-item" >
-        <span class="delete-button"> <%= button_to '🗑', little_script_path(script[:id]), method: 'delete', remote: true, data: { confirm: 'Are you sure?' } %> </span>
+        <span class="delete-button"> <%= button_to 'X', little_script_path(script[:id]), method: 'delete', remote: true, data: { confirm: 'Are you sure?' } %> </span>
         <span> <%= link_to script[:name], little_script_path(script[:id]) %> </span>
         <span class="playthough-duration"><time> <%= script[:duration_hours]%>h <%= script[:duration_minutes] %>m </time> </span>
         <span> <button class="go-button" id="<%= script[:id] %>"> START </button> </span>
