@@ -49,23 +49,39 @@ export const Page = ({id, show, init}) => {
 export const SlideShow = (props) => {
     const [state, dispatch] = useGlobals();
     const maxSlides = state.data.slides.length;
+
+    const handleClose = (e) => {
+        e.preventDefault();
+        window.history.go(-1)
+    };
+
     let activeSlideIdx = state.nav.activeSlideIdx;
+    let leftButton = <ControlButton color={"purple-accent"}
+                                                    onClick={()=> dispatch(prevSlide(activeSlideIdx, Date.now()))}
+                                                    disabled={activeSlideIdx===0}>
+                        back
+                     </ControlButton>
+
+    let rightButton;
+    if (activeSlideIdx < maxSlides - 1) {
+        rightButton = <ControlButton color={"purple-accent"}
+                                     onClick={()=> dispatch(nextSlide(activeSlideIdx, Date.now()))}
+                                     autofocus={true}>
+                            next
+                      </ControlButton>;
+    } else {
+        rightButton = <ControlButton color={"purple-accent"}
+                                     onClick={handleClose}
+                                     autofocus={true}>
+                            finish
+                       </ControlButton>;
+    }
 
     return (
         <div className="slideShow">
             <Controls >
-                <ControlButton color={"purple-accent"}
-                               onClick={()=> dispatch(prevSlide(activeSlideIdx, Date.now()))}
-                               disabled={activeSlideIdx===0}>
-                    back
-                </ControlButton>
-
-                <ControlButton color={"purple-accent"}
-                               onClick={()=> dispatch(nextSlide(activeSlideIdx, Date.now()))}
-                               disabled={activeSlideIdx===maxSlides - 1}
-                               autofocus={!(activeSlideIdx === maxSlides - 1)}>
-                    next
-                </ControlButton>
+                {leftButton}
+                {rightButton}
             </Controls>
             <Slides>
                 { state.data.slides.map((step, index) => (

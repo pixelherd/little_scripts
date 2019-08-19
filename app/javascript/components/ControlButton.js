@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../assets/stylesheets/control-button.scss";
 
 export const Controls = (props) => {
@@ -24,6 +24,28 @@ export const ControlButton = (props) => {
             </button>
         )
     };
+
+// export const FinishButton = (props) => {
+//     const [showing, setShowing] = useState(props.show);
+//     let color = props.color;
+//
+//     const fullName = [props.className, color].join(" ");
+//
+//     return (
+//         <button onClick={props.onClick}
+//                 value={props.value}
+//                 className={fullName}
+//                 disabled={props.disabled}
+//                 autoFocus={props.autofocus}
+//                 aria-label={props.label}
+//                 aria-describedby={props.tooltipID}
+//                 type={props.submit ? 'submit' : 'button'}>
+//             <span>{props.icon ? props.icon : ""}</span>
+//             <span>{props.label ? props.label : ""}</span>
+//             {props.children}
+//         </button>
+//     )
+// };
 
 ControlButton.defaultProps = {
     onClick: null,

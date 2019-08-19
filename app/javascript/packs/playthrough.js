@@ -66,7 +66,7 @@ function startPlayThrough(e){
     let suffix = document.location.pathname.slice(-1) === "/" ? "#/" : "/#/"
     let currentPage = document.location.pathname + suffix + scriptID; // eg "/"
     window.scriptID = scriptID;
-    document.title = "Play-Thorough";
+    document.title = "Play-Through";
     history.pushState(currentPage, document.title, currentPage);
 
     // Render a new playthrough
