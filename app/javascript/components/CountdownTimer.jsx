@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {useGlobals} from "../hooks";
+import {PLAY_HALFWAY_BEEP, PLAY_END_BEEP} from "../reducers/actions";
 
 const CountdownTimer = ({stepID, time, isActive}) =>  {
     const [state, dispatch] = useGlobals();
@@ -13,8 +14,11 @@ const CountdownTimer = ({stepID, time, isActive}) =>  {
                 let timer = setTimeout(
                     () => {
                         setTimeRemaining(timeRemaining => timeRemaining - 1);
-                        if (timeRemaining === 0) {
-                            dispatch({type: "hello"})
+                        if (timeRemaining === time/2) {
+                            dispatch({type: PLAY_HALFWAY_BEEP})
+                        }
+                        if (timeRemaining === time-5) {
+                            dispatch({type: PLAY_END_BEEP})
                         }
                     }, 1000);
                 return () => clearTimeout(timer)
@@ -32,7 +36,6 @@ const CountdownTimer = ({stepID, time, isActive}) =>  {
     return (<div className="CountdownTimer">
         <div>
             <p>{formatTime(minutes)}:{formatTime(seconds)}</p>
-
         </div>
     </div>)
 };

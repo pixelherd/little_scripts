@@ -4,6 +4,8 @@ import timingsReducer from "./timingsReducer";
 // import {initialTimings} from "../packs/application"
 // import {initialNav} from "../packs/application";
 
+
+
 export const rootReducer = ((state={}, action) => {
     Object.freeze(state);
 
@@ -17,7 +19,7 @@ export const rootReducer = ((state={}, action) => {
         const newStartTime = action.timestamp;
         const newFinishTime = newStartTime + state.timings.total_seconds * 1000;
         return {
-            globalCounter: historyCounter + 1,
+            globalCounter: historyCounter + 1, action,
             data: state.data,
             nav: playReducer(initialState.nav, action),
             timings: timingsReducer({...initialState.timings,
@@ -28,7 +30,7 @@ export const rootReducer = ((state={}, action) => {
         }
     }
     return {
-        globalCounter: historyCounter,
+        globalCounter: historyCounter, action,
         data: state.data,
         nav: playReducer(state.nav, action),
         timings: timingsReducer(state.timings, action)}
