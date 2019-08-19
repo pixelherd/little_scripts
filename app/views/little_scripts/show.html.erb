@@ -5,18 +5,21 @@
   </nav>
 </header>
 <main class="show-script-main">
+  <% l = @little_script.to_hash %>
   <section class="meta">
     <h1><%= @little_script.name.titleize %></h1>
     <h2>Could be finished by <span id="react-clock"> </span> </h2>
+    <p class="playthough-duration">(total duration: <time> <%= l[:duration_hours]%>h <%= l[:duration_minutes] %>m </time> )</p>
     <%= content_tag :span,
                     id: "clock-node",
                     data: {date: (Time.now + @little_script.steps.map(&:duration).sum) }.to_json do %>
     <% end  %>
+
     <button class="go-button" id="<%= @little_script[:id] %>"> start play-through </button>
     <%= content_tag :section,
                     class: "rNode",
                     id: @little_script[:id].to_s,
-                    data: (@little_script.to_hash).to_json do %>
+                    data: l.to_json do %>
       <% end %>
   </section>
   <ul class="step-list">
