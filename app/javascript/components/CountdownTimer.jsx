@@ -17,7 +17,7 @@ const CountdownTimer = ({stepID, time, isActive}) =>  {
                         if (timeRemaining === time/2) {
                             dispatch({type: PLAY_HALFWAY_BEEP})
                         }
-                        if (timeRemaining === time-5) {
+                        if (timeRemaining === 1) {
                             dispatch({type: PLAY_END_BEEP})
                         }
                     }, 1000);

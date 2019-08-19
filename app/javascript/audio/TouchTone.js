@@ -1,4 +1,4 @@
-// source: https://github.com/cliffhall/react-dtmf-dialer
+// mostly based on: https://github.com/cliffhall/react-dtmf-dialer
 
 export default class TouchTone {
 
@@ -25,7 +25,7 @@ export default class TouchTone {
 
     }
 
-    play(tones) {
+    play(tones, duration) {
 
         // initialize
         this.init();
@@ -44,7 +44,7 @@ export default class TouchTone {
         this.colOscillator.start(time);
 
         // Set the stop time
-        this.stop(time + 1);
+        this.stop(time + duration);
 
     }
 

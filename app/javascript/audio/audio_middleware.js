@@ -1,26 +1,20 @@
 //based on: https://github.com/cliffhall/react-dtmf-dialer
 
-import TouchTone from './TouchTone';
 import {PLAY_HALFWAY_BEEP, PLAY_END_BEEP} from "../reducers/actions";
-import {halway_beep} from "./beeps";
+import {play_end_beep, play_halfway_beep} from "./beeps";
 
 
 export const audioMiddleware = ({ getState }) => {
-
 
     return next => action => {
 
         switch (action.type) {
 
             case PLAY_HALFWAY_BEEP:
-                let touchTone = new TouchTone();
-                touchTone.play(halway_beep);
+                play_halfway_beep();
                 break;
             case PLAY_END_BEEP:
-                //play some notes at specified times
-                // let synth = new Tone.Synth().toMaster()
-                //
-                // play_end_beep(synth);
+                play_end_beep();
                 break;
             default:
                 break;
